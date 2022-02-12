@@ -1,4 +1,4 @@
-package com.example.restapp
+package com.example.restapp.di
 
 import android.util.Log
 import dagger.Module

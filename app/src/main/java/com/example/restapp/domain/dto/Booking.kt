@@ -1,4 +1,4 @@
-package com.example.restapp.dto
+package com.example.restapp.domain.dto
 
 import kotlinx.serialization.SerialName
 

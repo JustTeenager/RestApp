@@ -1,4 +1,4 @@
-package com.example.restapp.ui
+package com.example.restapp.ui.product_card
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -19,9 +19,9 @@ import coil.compose.rememberImagePainter
 import coil.request.ImageRequest
 import coil.request.ImageResult
 import coil.transform.CircleCropTransformation
-import com.example.restapp.ui.ProductCardViewModel.Event
-import com.example.restapp.dto.Product
-import com.example.restapp.theme.spacing
+import com.example.restapp.ui.product_card.ProductCardViewModel.Event
+import com.example.restapp.domain.dto.Product
+import com.example.restapp.ui.theme.spacing
 import com.google.accompanist.placeholder.PlaceholderHighlight
 import com.google.accompanist.placeholder.placeholder
 import com.google.accompanist.placeholder.shimmer

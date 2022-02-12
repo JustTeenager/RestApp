@@ -1,4 +1,4 @@
-package com.example.restapp
+package com.example.restapp.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -12,10 +12,10 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.MaterialTheme
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import com.example.restapp.ui.ProductCard
-import com.example.restapp.dto.Product
-import com.example.restapp.theme.RestaurantAppTheme
-import com.example.restapp.theme.spacing
+import com.example.restapp.domain.dto.Product
+import com.example.restapp.ui.theme.RestaurantAppTheme
+import com.example.restapp.ui.theme.spacing
+import com.example.restapp.ui.product_card.ProductCard
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

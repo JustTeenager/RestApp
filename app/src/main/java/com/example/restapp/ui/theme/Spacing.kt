@@ -1,4 +1,4 @@
-package com.example.restapp.theme
+package com.example.restapp.ui.theme
 
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable

@@ -1,4 +1,4 @@
-package com.example.restapp.theme
+package com.example.restapp.ui.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle
