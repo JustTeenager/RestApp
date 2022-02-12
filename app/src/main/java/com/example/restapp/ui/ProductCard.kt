@@ -116,7 +116,7 @@ fun ProductCartPreview(
         "https://images.unsplash.com/photo-1628373383885-4be0bc0172fa?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1301&q=80",
         "Превосходная пицца на тонком тесте со всей хуйней которая нужна пицце",
         "cheese && pasta",
-        Product.ProductType.PIZZA
+        Product.ProductType.DRINKS
     ),
     onBuyClick: (Product) -> Unit = { }
 ) {
