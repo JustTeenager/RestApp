@@ -1,7 +1,7 @@
-package com.example.restapp.domain.repository
+package com.example.restapp.domain.contracts
 
 import com.example.restapp.domain.dto.Product
 
-interface LoadProductsRepository {
+interface ApiManager {
     suspend fun loadProducts(): List<Product>
 }

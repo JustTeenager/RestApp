@@ -7,14 +7,16 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import javax.inject.Inject
 
 @HiltViewModel
-class ProductCardViewModel @Inject constructor() : ViewModel() {
+class ProductCardViewModel @Inject constructor(
+    //private val loadProductsRepository: LoadProductsRepository
+) : ViewModel() {
 
     var isImageLoaded = MutableStateFlow(false)
 
     var product: Product? = null
 
-    fun obtainEvent(event: Event){
-        when(event) {
+    fun obtainEvent(event: Event) {
+        when (event) {
             Event.LOAD_IMAGE_COMPLETED -> isImageLoaded.value = true
             Event.ON_BUY_CLICK -> {
                 onBuyClick(product)

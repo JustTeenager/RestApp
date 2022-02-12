@@ -1,23 +1,26 @@
 package com.example.restapp.di
 
 import android.util.Log
+import com.example.restapp.data.manager.ApiManagerImpl
+import com.example.restapp.data.manager.MockApiManagerImpl
+import com.example.restapp.domain.contracts.ApiManager
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
+import dagger.hilt.android.components.ViewModelComponent
 import io.ktor.client.*
 import io.ktor.client.engine.android.*
 import io.ktor.client.features.json.*
 import io.ktor.client.features.logging.*
 import io.ktor.client.features.observer.*
-import javax.inject.Singleton
+import javax.inject.Named
 
 @Module
-@InstallIn(SingletonComponent::class)
-class APIModules {
+@InstallIn(ViewModelComponent::class)
+class ApiModule {
 
     @Provides
-    @Singleton
     fun provideKtorClient(): HttpClient = HttpClient(Android) {
         install(JsonFeature)
 
@@ -37,4 +40,18 @@ class APIModules {
             }
         }
     }
+}
+
+@Module
+@InstallIn(ViewModelComponent::class)
+abstract class ApiBinding {
+
+    @Binds
+    @Named("Mock")
+    abstract fun bindMockApiManager(manager: MockApiManagerImpl): ApiManager
+
+    @Binds
+    @Named("Api")
+    abstract fun bindApiManager(manager: ApiManagerImpl): ApiManager
+
 }

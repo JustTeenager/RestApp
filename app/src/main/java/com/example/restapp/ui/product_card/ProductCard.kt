@@ -7,7 +7,8 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -19,8 +20,8 @@ import coil.compose.rememberImagePainter
 import coil.request.ImageRequest
 import coil.request.ImageResult
 import coil.transform.CircleCropTransformation
-import com.example.restapp.ui.product_card.ProductCardViewModel.Event
 import com.example.restapp.domain.dto.Product
+import com.example.restapp.ui.product_card.ProductCardViewModel.Event
 import com.example.restapp.ui.theme.spacing
 import com.google.accompanist.placeholder.PlaceholderHighlight
 import com.google.accompanist.placeholder.placeholder
