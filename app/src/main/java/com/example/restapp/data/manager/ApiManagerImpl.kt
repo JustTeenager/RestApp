@@ -8,10 +8,12 @@ import javax.inject.Inject
 class ApiManagerImpl @Inject constructor(
     private val client: HttpClient
 ) : ApiManager {
+
     override suspend fun loadProducts(): List<Product> {
         /*client.use {
             return client.get<"">()
         }*/
         TODO("Добавить url")
+        TODO("Добавить обработку ошибок")
     }
 }

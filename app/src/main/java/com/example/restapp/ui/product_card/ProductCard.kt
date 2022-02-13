@@ -32,7 +32,8 @@ import com.google.accompanist.placeholder.shimmer
 fun ProductCard(
     modifier: Modifier,
     product: Product,
-    viewModel: ProductCardViewModel = hiltViewModel()
+    viewModel: ProductCardViewModel = hiltViewModel(),
+    isShimmerNeed: Boolean = false
 ) {
     val isImageLoaded = viewModel.isImageLoaded.collectAsState()
 
@@ -41,9 +42,9 @@ fun ProductCard(
             .fillMaxWidth()
             .height(IntrinsicSize.Min)
             .padding(MaterialTheme.spacing.medium)
-            .clickable { }
+            .clickable { viewModel.obtainEvent(Event.OnBuyClick(product)) }
             .placeholder(
-                visible = !isImageLoaded.value,
+                visible = !isImageLoaded.value || isShimmerNeed,
                 color = Color.White,
                 highlight = PlaceholderHighlight.shimmer(
                     highlightColor = Color.Gray
@@ -69,12 +70,12 @@ fun ProductCard(
                                 metadata: ImageResult.Metadata
                             ) {
                                 super.onSuccess(request, metadata)
-                                viewModel.obtainEvent(Event.LOAD_IMAGE_COMPLETED)
+                                viewModel.obtainEvent(Event.OnImageLoadCompleted)
                             }
 
                             override fun onError(request: ImageRequest, throwable: Throwable) {
                                 super.onError(request, throwable)
-                                viewModel.obtainEvent(Event.LOAD_IMAGE_COMPLETED)
+                                viewModel.obtainEvent(Event.OnImageLoadCompleted)
                             }
                         })
                         error(android.R.drawable.stat_notify_error)

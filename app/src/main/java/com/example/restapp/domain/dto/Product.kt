@@ -15,6 +15,22 @@ data class Product(
     @SerialName("product_type_code")
     val productTypeCode: ProductType
 ) {
+    companion object {
+        val shimmeredProductsList = mutableListOf<Product>().apply {
+            repeat(10) { num ->
+                Product(
+                    id = num,
+                    name = "",
+                    price = 0,
+                    imgUrl = "",
+                    description = "",
+                    composition = "",
+                    productTypeCode = ProductType.PIZZA
+                ).also { add(it) }
+            }
+        }
+    }
+
     enum class ProductType(val code: Int) {
         PIZZA(0),
         DRINKS(1),

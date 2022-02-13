@@ -27,11 +27,11 @@ class ApiModule {
         install(Logging) {
             logger = object : Logger {
                 override fun log(message: String) {
-                    Log.d("Logger Ktor =>", message)
+                    Log.d("Ktor body is", message)
                 }
 
             }
-            level = LogLevel.ALL
+            level = LogLevel.BODY
         }
 
         install(ResponseObserver) {
