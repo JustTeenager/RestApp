@@ -17,8 +17,8 @@ class LoadProductsRepositoryImpl @Inject constructor(
     private val manager: ApiManager = if (isMockUsing) mockApiManager else apiManager
 
     override suspend fun loadProducts(): Result<List<Product>> =
-       runRequest {
-           manager.loadProducts()
-       }
+        runRequest {
+            manager.loadProducts()
+        }
 
 }

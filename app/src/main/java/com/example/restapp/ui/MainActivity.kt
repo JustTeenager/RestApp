@@ -23,9 +23,10 @@ class MainActivity : ComponentActivity() {
             RestaurantAppTheme {
 
                 // A surface container using the 'background' color from the theme
-                ProductCatalog(modifier = Modifier
-                    .fillMaxSize()
-                    .padding(MaterialTheme.spacing.medium)
+                ProductCatalog(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(MaterialTheme.spacing.medium)
                 )
             }
         }

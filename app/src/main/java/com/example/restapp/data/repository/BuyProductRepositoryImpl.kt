@@ -6,8 +6,8 @@ import javax.inject.Inject
 
 
 class BuyProductRepositoryImpl @Inject constructor(
- //TODO Inject a storageManager
-): BuyProductRepository {
+    //TODO Inject a storageManager
+) : BuyProductRepository {
 
     override fun buyProduct(product: Product) {
         TODO("Not yet implemented")
