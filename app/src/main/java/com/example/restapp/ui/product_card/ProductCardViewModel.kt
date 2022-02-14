@@ -17,9 +17,7 @@ class ProductCardViewModel @Inject constructor(
     fun obtainEvent(event: Event) {
         when (event) {
             is Event.OnImageLoadCompleted -> isImageLoaded.value = true
-            is Event.OnBuyClick -> {
-                onBuyClick(event.data)
-            }
+            is Event.OnBuyClick -> onBuyClick(event.data)
         }
     }
 

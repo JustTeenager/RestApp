@@ -1,4 +1,4 @@
-package com.example.restapp.ui.product_list
+package com.example.restapp.ui.product_catalog
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

@@ -7,7 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.MaterialTheme
 import androidx.compose.ui.Modifier
-import com.example.restapp.ui.product_list.ProductCatalog
+import com.example.restapp.ui.product_catalog.ProductCatalog
 import com.example.restapp.ui.theme.RestaurantAppTheme
 import com.example.restapp.ui.theme.spacing
 import dagger.hilt.android.AndroidEntryPoint
