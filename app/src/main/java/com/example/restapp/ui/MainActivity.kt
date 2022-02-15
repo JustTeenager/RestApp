@@ -22,6 +22,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             RestaurantAppTheme {
 
+                //Tag(modifier = Modifier, text = "Острое")
                 // A surface container using the 'background' color from the theme
                 ProductCatalog(
                     modifier = Modifier

@@ -20,5 +20,4 @@ class LoadProductsRepositoryImpl @Inject constructor(
         runRequest {
             manager.loadProducts()
         }
-
 }

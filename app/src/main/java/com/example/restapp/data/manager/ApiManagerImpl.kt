@@ -3,6 +3,7 @@ package com.example.restapp.data.manager
 import com.example.restapp.domain.contracts.ApiManager
 import com.example.restapp.domain.dto.Product
 import io.ktor.client.*
+import io.ktor.client.request.*
 import javax.inject.Inject
 
 class ApiManagerImpl @Inject constructor(
@@ -10,10 +11,8 @@ class ApiManagerImpl @Inject constructor(
 ) : ApiManager {
 
     override suspend fun loadProducts(): List<Product> {
-        /*client.use {
-            return client.get<"">()
-        }*/
-        TODO("Добавить url")
-        TODO("Добавить обработку ошибок")
+        client.use {
+            return client.get("http://192.168.43.2:8000/api/product/?format=json")
+        }
     }
 }

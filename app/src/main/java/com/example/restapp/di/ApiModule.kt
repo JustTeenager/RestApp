@@ -12,9 +12,11 @@ import dagger.hilt.android.components.ViewModelComponent
 import io.ktor.client.*
 import io.ktor.client.engine.android.*
 import io.ktor.client.features.json.*
+import io.ktor.client.features.json.serializer.*
 import io.ktor.client.features.logging.*
 import io.ktor.client.features.observer.*
 import javax.inject.Named
+import kotlinx.serialization.json.Json as KotlinJson
 
 @Module
 @InstallIn(ViewModelComponent::class)
@@ -22,7 +24,9 @@ class ApiModule {
 
     @Provides
     fun provideKtorClient(): HttpClient = HttpClient(Android) {
-        install(JsonFeature)
+        install(JsonFeature) {
+            serializer = KotlinxSerializer(KotlinJson { ignoreUnknownKeys = true })
+        }
 
         install(Logging) {
             logger = object : Logger {

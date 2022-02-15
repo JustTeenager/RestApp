@@ -12,8 +12,8 @@ data class Product(
     val imgUrl: String,
     val description: String,
     val composition: String,
-    @SerialName("product_type_code")
-    val productTypeCode: ProductType
+    @SerialName("product_type")
+    val productTypeCode: Int
 ) {
     companion object {
         val shimmeredProductsList = mutableListOf<Product>().apply {
@@ -25,7 +25,7 @@ data class Product(
                     imgUrl = "",
                     description = "",
                     composition = "",
-                    productTypeCode = ProductType.PIZZA
+                    productTypeCode = 1
                 ).also { add(it) }
             }
         }

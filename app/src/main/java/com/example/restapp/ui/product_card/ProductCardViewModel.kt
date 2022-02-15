@@ -14,11 +14,18 @@ class ProductCardViewModel @Inject constructor(
 
     var isImageLoaded = MutableStateFlow(false)
 
+    var isExpanded = MutableStateFlow(false)
+
     fun obtainEvent(event: Event) {
         when (event) {
             is Event.OnImageLoadCompleted -> isImageLoaded.value = true
             is Event.OnBuyClick -> onBuyClick(event.data)
+            is Event.OnExpand -> onExpand()
         }
+    }
+
+    private fun onExpand() {
+        isExpanded.value = !isExpanded.value
     }
 
     private fun onBuyClick(product: Product) {
@@ -27,6 +34,7 @@ class ProductCardViewModel @Inject constructor(
 
     sealed class Event {
         object OnImageLoadCompleted : Event()
+        object OnExpand : Event()
         class OnBuyClick(val data: Product) : Event()
     }
 }
