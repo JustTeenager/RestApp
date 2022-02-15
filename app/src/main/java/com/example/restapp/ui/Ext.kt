@@ -8,3 +8,8 @@ suspend fun <T> runRequest(method: suspend () -> T): Result<T> {
         Result.failure(e)
     }
 }
+
+//TODO Стринг ресурс
+fun Int.toRoubles(): String {
+    return "$this ₽"
+}

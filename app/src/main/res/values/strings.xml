@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">RestApp</string>
     <string name="fail_title">Упс! Что-то пошло не так и мы не загрузили страницу!</string>
+    <string name="but_btn_title">Купить</string>
 </resources>
