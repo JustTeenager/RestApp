@@ -1,12 +1,15 @@
 package com.example.restapp.data.manager
 
+import com.example.restapp.data.mapper.FromDtoToProductMapper
 import com.example.restapp.data.model.Product
 import com.example.restapp.domain.contracts.ApiManager
 import com.example.restapp.domain.dto.ProductDTO
 import com.example.restapp.ui.toProductList
 import javax.inject.Inject
 
-class MockApiManagerImpl @Inject constructor() : ApiManager {
+class MockApiManagerImpl @Inject constructor(
+    private val productMapper: FromDtoToProductMapper
+) : ApiManager {
     override suspend fun loadProducts(): List<Product> =
         mutableListOf<ProductDTO>().apply {
             repeat(15) { num ->
@@ -20,5 +23,5 @@ class MockApiManagerImpl @Inject constructor() : ApiManager {
                     num % Product.ProductType.values().size
                 ).also { this.add(it) }
             }
-        }.toProductList()
+        }.toProductList(productMapper)
 }

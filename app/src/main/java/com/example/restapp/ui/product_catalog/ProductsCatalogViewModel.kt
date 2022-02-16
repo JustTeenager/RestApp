@@ -1,9 +1,9 @@
 package com.example.restapp.ui.product_catalog
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.restapp.data.model.Product
-import com.example.restapp.domain.dto.ProductDTO
 import com.example.restapp.domain.repository.LoadProductsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -26,6 +26,7 @@ class ProductsCatalogViewModel @Inject constructor(
     }
 
     fun obtainEvent(event: Event) {
+        Log.d("tut_ProductsCatalog", "event is $event")
         when (event) {
             is Event.OnLoadingStarted -> {
                 startLoading()
@@ -53,7 +54,7 @@ class ProductsCatalogViewModel @Inject constructor(
 
     private fun succeedLoading(list: List<Product>) = viewModelScope.launch {
         productsList.emit(list)
-
+        Log.d("tut_list_onSucc", list.toString())
         productsLoadState.emit(LoadingState.LOAD_SUCCEED)
     }
 

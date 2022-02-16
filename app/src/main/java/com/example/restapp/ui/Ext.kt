@@ -21,4 +21,5 @@ fun Int.toRoubles(): String {
     return "$this ₽"
 }
 
-fun List<ProductDTO>.toProductList(): List<Product> = this.map { FromDtoToProductMapper()(it) }
+fun List<ProductDTO>.toProductList(mapper: FromDtoToProductMapper): List<Product> =
+    this.map { mapper(it) }

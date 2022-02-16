@@ -2,10 +2,8 @@ package com.example.restapp.data.repository
 
 import com.example.restapp.data.model.Product
 import com.example.restapp.domain.contracts.ApiManager
-import com.example.restapp.domain.dto.ProductDTO
 import com.example.restapp.domain.repository.LoadProductsRepository
 import com.example.restapp.ui.runRequest
-import com.example.restapp.ui.toProductList
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -14,7 +12,7 @@ class LoadProductsRepositoryImpl @Inject constructor(
     @Named("Api") apiManager: ApiManager
 ) : LoadProductsRepository {
 
-    private val isMockUsing = true
+    private val isMockUsing = false
 
     private val manager: ApiManager = if (isMockUsing) mockApiManager else apiManager
 

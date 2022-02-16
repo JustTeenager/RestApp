@@ -14,5 +14,4 @@ data class ProductDTO(
     val tags: List<String>,
     @SerialName("product_type")
     val productTypeCode: Int
-) {
-}
+)

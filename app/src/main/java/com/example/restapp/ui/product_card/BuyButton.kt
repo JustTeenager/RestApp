@@ -15,7 +15,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import com.example.restapp.R
 import com.example.restapp.ui.theme.spacing
-import com.example.restapp.ui.toRoubles
 
 @Composable
 fun BuyButton(
