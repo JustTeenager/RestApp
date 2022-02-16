@@ -1,6 +1,7 @@
 package com.example.restapp.ui.product_card
 
 import android.R
+import android.util.Log
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
@@ -14,7 +15,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import coil.transform.CircleCropTransformation
-import com.example.restapp.domain.dto.Product
+import com.example.restapp.data.model.Product
 import com.example.restapp.ui.theme.spacing
 
 @Composable
@@ -35,11 +36,16 @@ fun ProductPreview(
                 .error(R.drawable.stat_notify_error)
                 .transformations(CircleCropTransformation())
                 .build(),
-            onError = { onImageLoaded() },
+            onError = {
+                onImageLoaded()
+                Log.e("tut","ERRORING")
+                it.result.throwable.printStackTrace()
+            },
             onSuccess = { onImageLoaded() },
             contentDescription = null,
             modifier = Modifier
                 .clip(RoundedCornerShape(MaterialTheme.spacing.medium))
+                .width(100.dp)
                 .height(100.dp),
             contentScale = ContentScale.Fit
         )

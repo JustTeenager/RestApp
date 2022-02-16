@@ -1,6 +1,7 @@
 package com.example.restapp.ui.product_catalog
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -23,7 +24,8 @@ fun FailingProductsLoadScreen(
 ) {
     Column(
         modifier = modifier
-            .padding(MaterialTheme.spacing.medium)
+            .padding(MaterialTheme.spacing.medium),
+        verticalArrangement = Arrangement.Center
     ) {
         Image(
             modifier = Modifier.scale(0.75f),

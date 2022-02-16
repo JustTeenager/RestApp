@@ -4,7 +4,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.example.restapp.domain.dto.Product
+import com.example.restapp.data.model.Product
+import com.example.restapp.domain.dto.ProductDTO
 import com.example.restapp.ui.product_card.ProductCard
 
 @Composable

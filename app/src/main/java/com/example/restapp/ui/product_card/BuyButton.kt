@@ -21,7 +21,7 @@ import com.example.restapp.ui.toRoubles
 fun BuyButton(
     modifier: Modifier,
     onClick: () -> Unit,
-    price: Int
+    price: String
 ) {
     Button(
         modifier = modifier
@@ -41,7 +41,7 @@ fun BuyButton(
             )
 
             Text(
-                text = price.toRoubles(),
+                text = price,
                 color = Color.White,
                 style = MaterialTheme.typography.body1
             )

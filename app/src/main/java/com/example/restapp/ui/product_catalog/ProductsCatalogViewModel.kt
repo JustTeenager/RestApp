@@ -2,7 +2,8 @@ package com.example.restapp.ui.product_catalog
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.restapp.domain.dto.Product
+import com.example.restapp.data.model.Product
+import com.example.restapp.domain.dto.ProductDTO
 import com.example.restapp.domain.repository.LoadProductsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

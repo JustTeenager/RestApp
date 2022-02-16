@@ -16,8 +16,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.example.restapp.domain.dto.Product
-import com.example.restapp.ui.product_card.ProductCardViewModel.Event.OnImageLoadCompleted
+import com.example.restapp.data.model.Product
+import com.example.restapp.domain.dto.ProductDTO
 import com.example.restapp.ui.theme.spacing
 import com.google.accompanist.placeholder.PlaceholderHighlight
 import com.google.accompanist.placeholder.placeholder
@@ -32,7 +32,8 @@ fun ProductCard(
     viewModel: ProductCardViewModel = hiltViewModel(),
     isShimmerNeed: Boolean = false,
 ) {
-    val isImageLoaded = viewModel.isImageLoaded.collectAsState()
+    var isImageLoaded by remember { mutableStateOf(false) }
+
     var isExpanded by rememberSaveable { mutableStateOf(false) }
 
     Card(
@@ -41,7 +42,7 @@ fun ProductCard(
             .wrapContentHeight()
             .padding(MaterialTheme.spacing.medium)
             .placeholder(
-                visible = !isImageLoaded.value || isShimmerNeed,
+                visible = !isImageLoaded || isShimmerNeed,
                 color = Color.White,
                 highlight = PlaceholderHighlight.shimmer(
                     highlightColor = Color.Gray
@@ -56,7 +57,7 @@ fun ProductCard(
             ProductPreview(
                 Modifier,
                 product
-            ) { viewModel.obtainEvent(OnImageLoadCompleted) }
+            ) { isImageLoaded = true }
 
             AnimatedVisibility(
                 modifier = Modifier,
@@ -65,7 +66,7 @@ fun ProductCard(
                 Column(modifier = Modifier.padding(bottom = MaterialTheme.spacing.medium)) {
 
                     TagList(
-                        listOf("Салатец", "Вкуснотища", "Оливочки", "Острый", "100гр")
+                        product.tags
                     )
 
                     BuyButton(

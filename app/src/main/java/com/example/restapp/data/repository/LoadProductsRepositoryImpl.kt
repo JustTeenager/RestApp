@@ -1,9 +1,11 @@
 package com.example.restapp.data.repository
 
+import com.example.restapp.data.model.Product
 import com.example.restapp.domain.contracts.ApiManager
-import com.example.restapp.domain.dto.Product
+import com.example.restapp.domain.dto.ProductDTO
 import com.example.restapp.domain.repository.LoadProductsRepository
 import com.example.restapp.ui.runRequest
+import com.example.restapp.ui.toProductList
 import javax.inject.Inject
 import javax.inject.Named
 

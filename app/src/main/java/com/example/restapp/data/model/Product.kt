@@ -1,19 +1,13 @@
-package com.example.restapp.domain.dto
+package com.example.restapp.data.model
 
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
-
-@Serializable
 data class Product(
     val id: Int = 0,
     val name: String,
-    val price: Int,
-    @SerialName("img_url")
+    val price: String,
     val imgUrl: String,
     val description: String,
-    val composition: String,
-    @SerialName("product_type")
-    val productTypeCode: Int
+    val tags: List<String>,
+    val productType: ProductType
 ) {
     companion object {
         val shimmeredProductsList = mutableListOf<Product>().apply {
@@ -21,11 +15,11 @@ data class Product(
                 Product(
                     id = num,
                     name = "",
-                    price = 0,
+                    price = "0",
                     imgUrl = "",
                     description = "",
-                    composition = "",
-                    productTypeCode = 1
+                    tags = listOf(),
+                    productType = ProductType.PIZZA
                 ).also { add(it) }
             }
         }

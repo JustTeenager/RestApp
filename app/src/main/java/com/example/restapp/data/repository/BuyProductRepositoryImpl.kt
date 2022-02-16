@@ -1,6 +1,7 @@
 package com.example.restapp.data.repository
 
-import com.example.restapp.domain.dto.Product
+import com.example.restapp.data.model.Product
+import com.example.restapp.domain.dto.ProductDTO
 import com.example.restapp.domain.repository.BuyProductRepository
 import javax.inject.Inject
 
