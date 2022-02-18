@@ -11,7 +11,7 @@ import androidx.navigation.NavController
 @Composable
 fun BottomNavBar(
     modifier: Modifier,
-    items: List<NavBarItem>,
+    items: List<NavBarItems>,
     navigationController: NavController
 ) {
     val navControllerBackStackEntry =  navigationController.currentBackStackEntry

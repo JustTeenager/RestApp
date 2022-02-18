@@ -1,6 +1,6 @@
 package com.example.restapp.ui.main_screen.nav_bar
 
-sealed class NavBarItem(
+sealed class NavBarItems(
     val onClick: () -> Unit,
     val icon: Int,
     val route: String
@@ -9,17 +9,17 @@ sealed class NavBarItem(
         onClick: () -> Unit,
         icon: Int,
         route: String
-    ) : NavBarItem(onClick, icon, route)
+    ) : NavBarItems(onClick, icon, route)
 
     class DeliveryList(
         onClick: () -> Unit,
         icon: Int,
         route: String
-    ) : NavBarItem(onClick, icon, route)
+    ) : NavBarItems(onClick, icon, route)
 
     class CreateDelivery(
         onClick: () -> Unit,
         icon: Int,
         route: String
-    ) : NavBarItem(onClick, icon, route)
+    ) : NavBarItems(onClick, icon, route)
 }
