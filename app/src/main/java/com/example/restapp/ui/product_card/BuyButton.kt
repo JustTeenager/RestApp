@@ -27,7 +27,7 @@ fun BuyButton(
             .fillMaxWidth()
             .padding(MaterialTheme.spacing.large)
             .clip(RoundedCornerShape(MaterialTheme.spacing.medium)),
-        onClick = { onClick() }
+        onClick = onClick
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),
