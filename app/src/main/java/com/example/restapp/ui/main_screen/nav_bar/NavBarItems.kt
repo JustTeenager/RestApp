@@ -1,25 +1,28 @@
 package com.example.restapp.ui.main_screen.nav_bar
 
-sealed class NavBarItems(
-    val onClick: () -> Unit,
+import androidx.annotation.DrawableRes
+import com.example.restapp.R
+import com.example.restapp.ui.delivery_create.DeliveryCreateNavigationFactory
+import com.example.restapp.ui.delivery_list.DeliveryListNavigationFactory
+import com.example.restapp.ui.product_catalog.ProductsCatalogNavigationFactory
+
+enum class NavBarItems(
+    @DrawableRes
     val icon: Int,
     val route: String
 ) {
-    class Products(
-        onClick: () -> Unit,
-        icon: Int,
-        route: String
-    ) : NavBarItems(onClick, icon, route)
+    Products(
+        R.drawable.ic_bottom_bar_product,
+        ProductsCatalogNavigationFactory.route
+    ),
 
-    class DeliveryList(
-        onClick: () -> Unit,
-        icon: Int,
-        route: String
-    ) : NavBarItems(onClick, icon, route)
+    DeliveryList(
+        R.drawable.ic_bottom_bar_delivery_list,
+        DeliveryListNavigationFactory.route
+    ),
 
-    class CreateDelivery(
-        onClick: () -> Unit,
-        icon: Int,
-        route: String
-    ) : NavBarItems(onClick, icon, route)
+    CreateDelivery(
+        R.drawable.ic_bottom_bar_delivery_create,
+        DeliveryCreateNavigationFactory.route
+    )
 }

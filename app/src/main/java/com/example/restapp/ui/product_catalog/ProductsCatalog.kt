@@ -8,8 +8,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
-import com.example.restapp.di.NavigationFactory
-import com.example.restapp.di.NavigationFactory.NavigationFactoryCompanion
+import com.example.restapp.di.navigation.NavigationFactory
+import com.example.restapp.di.navigation.NavigationFactory.NavigationFactoryCompanion
 import com.example.restapp.ui.product_catalog.ProductsCatalogViewModel.LoadingState.*
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
@@ -61,10 +61,10 @@ fun ProductCatalog(
 
 class ProductsCatalogNavigationFactory @Inject constructor() : NavigationFactory {
 
-    companion object Companion: NavigationFactoryCompanion<ProductsCatalogNavigationFactory>
+    companion object Companion : NavigationFactoryCompanion<ProductsCatalogNavigationFactory>
 
-    override fun create(navGraph: NavGraphBuilder, builder: NavHostController) {
-        navGraph.composable(
+    override fun create(builder: NavGraphBuilder, navGraph: NavHostController) {
+        builder.composable(
             route = route,
         ) {
             ProductCatalog(

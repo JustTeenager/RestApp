@@ -1,11 +1,11 @@
-package com.example.restapp.di
+package com.example.restapp.di.navigation
 
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 
 interface NavigationFactory {
 
-    interface NavigationFactoryCompanion <T> {
+    interface NavigationFactoryCompanion<T> {
         val route: String
             get() = with(javaClass) {
                 `package`.name + canonicalName
@@ -13,7 +13,7 @@ interface NavigationFactory {
     }
 
     fun create(
-        navGraph: NavGraphBuilder,
-        builder: NavHostController
+        builder: NavGraphBuilder,
+        navGraph: NavHostController
     )
 }
