@@ -6,10 +6,7 @@ import com.example.restapp.domain.dto.ProductDTO
 
 suspend fun <T> runRequest(method: suspend () -> T): Result<T> {
     return try {
-        val result = Result.success(method())
-        if (result.getOrNull() == null)
-            Result.failure(Exception("Пустой ответ"))
-        else result
+       Result.success(method())
     } catch (e: Exception) {
         e.printStackTrace()
         Result.failure(e)

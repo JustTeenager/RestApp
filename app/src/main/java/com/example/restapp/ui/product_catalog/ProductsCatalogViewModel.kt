@@ -54,7 +54,6 @@ class ProductsCatalogViewModel @Inject constructor(
 
     private fun succeedLoading(list: List<Product>) = viewModelScope.launch {
         productsList.emit(list)
-        Log.d("tut_list_onSucc", list.toString())
         productsLoadState.emit(LoadingState.LOAD_SUCCEED)
     }
 

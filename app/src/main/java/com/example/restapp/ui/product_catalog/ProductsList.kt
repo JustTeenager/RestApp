@@ -18,7 +18,6 @@ fun ProductsList(
     ) {
         items(
             count = productsList.size,
-            key = { productsList[it].id },
             itemContent = { index ->
                 ProductCard(
                     modifier = Modifier,

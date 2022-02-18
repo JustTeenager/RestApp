@@ -15,9 +15,7 @@ class ApiManagerImpl @Inject constructor(
 ) : ApiManager {
 
     override suspend fun loadProducts(): List<Product> {
-        client.use {
-            return client.get<List<ProductDTO>>("/product/?format=json")
-                .toProductList(productMapper)
-        }
+        return client.get<List<ProductDTO>>("/product/?format=json")
+            .toProductList(productMapper)
     }
 }
