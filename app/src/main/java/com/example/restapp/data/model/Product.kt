@@ -3,7 +3,7 @@ package com.example.restapp.data.model
 data class Product(
     val id: Int = 0,
     val name: String,
-    val price: String,
+    val price: Int,
     val imgUrl: String,
     val description: String,
     val tags: List<String>,
@@ -15,7 +15,7 @@ data class Product(
                 Product(
                     id = num,
                     name = "",
-                    price = "0",
+                    price = 0,
                     imgUrl = "",
                     description = "",
                     tags = listOf(),

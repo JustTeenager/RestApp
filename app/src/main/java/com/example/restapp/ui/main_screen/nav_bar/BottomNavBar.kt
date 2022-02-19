@@ -1,6 +1,5 @@
 package com.example.restapp.ui.main_screen.nav_bar
 
-import android.util.Log
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem

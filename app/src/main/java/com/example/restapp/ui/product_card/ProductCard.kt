@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.restapp.data.model.Product
 import com.example.restapp.ui.theme.spacing
+import com.example.restapp.ui.toRoubles
 import com.google.accompanist.placeholder.PlaceholderHighlight
 import com.google.accompanist.placeholder.placeholder
 import com.google.accompanist.placeholder.shimmer
@@ -71,9 +72,9 @@ fun ProductCard(
                     BuyButton(
                         modifier = Modifier.align(CenterHorizontally),
                         onClick = {
-                            viewModel.obtainEvent(ProductCardViewModel.Event.OnBuyClick(product))
+                            viewModel.obtainEvent(ProductCardViewModel.Event.OnProductAdd(product))
                         },
-                        price = product.price
+                        price = product.price.toRoubles()
                     )
                 }
             }

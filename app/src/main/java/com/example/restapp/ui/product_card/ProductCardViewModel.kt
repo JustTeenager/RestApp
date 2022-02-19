@@ -13,15 +13,21 @@ class ProductCardViewModel @Inject constructor(
 
     fun obtainEvent(event: Event) {
         when (event) {
-            is Event.OnBuyClick -> onBuyClick(event.data)
+            is Event.OnProductAdd -> addProductToCart(event.data)
+            is Event.OnProductRemove -> removeProductFromCart(event.data)
         }
     }
 
-    private fun onBuyClick(product: Product) {
-        buyProductRepository.buyProduct(product)
+    private fun addProductToCart(product: Product) {
+        buyProductRepository.addProductToCart(product)
+    }
+
+    private fun removeProductFromCart(product: Product) {
+        buyProductRepository.removeProductFromCart(product)
     }
 
     sealed class Event {
-        class OnBuyClick(val data: Product) : Event()
+        class OnProductAdd(val data: Product) : Event()
+        class OnProductRemove(val data: Product) : Event()
     }
 }
