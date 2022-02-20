@@ -16,10 +16,12 @@ class StorageManager @Inject constructor() {
         _productsInCart
             .onEach { list ->
                 totalPrice.value = list
-                    .map { it.second }
-                    .sumOf { it.price }
+                    .sumOf { it.first * it.second.price }
+
+                productsCount.value = list.size
             }
 
+    val productsCount = MutableStateFlow(0)
     val totalPrice = MutableStateFlow(0)
 
     fun addProductToCart(product: Product) {

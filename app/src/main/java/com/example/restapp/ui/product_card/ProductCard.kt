@@ -11,7 +11,7 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.ui.Alignment.Companion.CenterHorizontally
+import androidx.compose.ui.Alignment.Companion.Start
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
@@ -35,6 +35,10 @@ fun ProductCard(
     var isImageLoaded by remember { mutableStateOf(false) }
 
     var isExpanded by rememberSaveable { mutableStateOf(false) }
+
+    var productsCount by rememberSaveable { mutableStateOf(0) }
+
+    var isRemoveButtonVisible by rememberSaveable { mutableStateOf(false) }
 
     Card(
         modifier = modifier
@@ -70,11 +74,22 @@ fun ProductCard(
                     )
 
                     BuyButton(
-                        modifier = Modifier.align(CenterHorizontally),
-                        onClick = {
-                            viewModel.obtainEvent(ProductCardViewModel.Event.OnProductAdd(product))
+                        modifier = Modifier.align(Start),
+                        onAddProduct = {
+                            viewModel
+                                .obtainEvent(ProductCardViewModel.Event.OnProductAdd(product))
+                            productsCount++
+                            isRemoveButtonVisible = true
                         },
-                        price = product.price.toRoubles()
+                        onRemoveProduct = {
+                            viewModel
+                                .obtainEvent(ProductCardViewModel.Event.OnProductRemove(product))
+                            productsCount--
+                            if (productsCount <= 0) isRemoveButtonVisible = false
+                        },
+                        price = product.price.toRoubles(),
+                        productsCount = productsCount,
+                        isRemoveButtonVisible = isRemoveButtonVisible
                     )
                 }
             }

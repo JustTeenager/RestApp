@@ -1,13 +1,15 @@
 package com.example.restapp.domain.dto
 
 import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
-data class Delivery(
+@Serializable
+data class CartDTO(
     val id: Int,
     @SerialName("product_list")
-    val productList: List<ProductDTO>,
+    val productList: List<Pair<Int, ProductDTO>>,
     @SerialName("total_price")
     val totalPrice: Int,
     val address: String,
-    val deliveryState: String? = null
+    val deliveryStateCode: Int? = null
 )
