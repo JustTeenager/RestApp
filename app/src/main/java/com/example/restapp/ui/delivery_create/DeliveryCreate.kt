@@ -3,6 +3,7 @@ package com.example.restapp.ui.delivery_create
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
@@ -40,7 +41,9 @@ class DeliveryCreateNavigationFactory @Inject constructor() : NavigationFactory 
             route = route
         ) {
             DeliveryCreate(
-                modifier = Modifier.fillMaxSize(),
+                modifier = Modifier
+                    .fillMaxSize()
+                    .navigationBarsPadding(),
                 navController = navGraph
             )
         }

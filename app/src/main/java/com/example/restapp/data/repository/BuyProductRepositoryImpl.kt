@@ -6,7 +6,6 @@ import com.example.restapp.domain.repository.BuyProductRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.collectLatest
 import javax.inject.Inject
 
 

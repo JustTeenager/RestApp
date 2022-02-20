@@ -12,7 +12,7 @@ class MockApiManagerImpl @Inject constructor(
 ) : ApiManager {
     override suspend fun loadProducts(): List<Product> =
         mutableListOf<ProductDTO>().apply {
-            repeat(15) { num ->
+            repeat(50) { num ->
                 ProductDTO(
                     num,
                     "Продукт №$num",

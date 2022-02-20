@@ -1,5 +1,9 @@
 package com.example.restapp.data.model
 
+import androidx.annotation.StringRes
+import com.example.restapp.R
+import com.example.restapp.ui.toProductType
+
 data class Product(
     val id: Int = 0,
     val name: String,
@@ -11,7 +15,7 @@ data class Product(
 ) {
     companion object {
         val shimmeredProductsList = mutableListOf<Product>().apply {
-            repeat(10) { num ->
+            repeat(30) { num ->
                 Product(
                     id = num,
                     name = "",
@@ -19,15 +23,15 @@ data class Product(
                     imgUrl = "",
                     description = "",
                     tags = listOf(),
-                    productType = ProductType.PIZZA
+                    productType = (num % ProductType.values().size).toProductType()
                 ).also { add(it) }
             }
         }
     }
 
-    enum class ProductType(val code: Int) {
-        PIZZA(0),
-        DRINKS(1),
-        SALADS(2)
+    enum class ProductType(val code: Int, @StringRes val title: Int) {
+        PIZZA(0, R.string.tab_pizza_title),
+        DRINKS(1, R.string.tab_drinks_title),
+        SALAD(2, R.string.tab_salad_title)
     }
 }

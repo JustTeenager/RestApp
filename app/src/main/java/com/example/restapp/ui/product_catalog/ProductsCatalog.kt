@@ -2,6 +2,7 @@ package com.example.restapp.ui.product_catalog
 
 import android.util.Log
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -35,16 +36,16 @@ fun ProductCatalog(
     ) {
         when (loadingState.value) {
             LOAD_IN_PROGRESS -> {
-                ProductsList(
+                ProductsListWithPeriphery(
                     modifier = modifier,
-                    productsList = productsList.value,
+                    initialProductsList = productsList.value,
                     isShimmerNeeded = true
                 )
             }
             LOAD_SUCCEED -> {
-                ProductsList(
+                ProductsListWithPeriphery(
                     modifier = modifier,
-                    productsList = productsList.value,
+                    initialProductsList = productsList.value,
                     isShimmerNeeded = false
                 )
                 isRefreshNeeded = false
@@ -68,7 +69,9 @@ class ProductsCatalogNavigationFactory @Inject constructor() : NavigationFactory
             route = route,
         ) {
             ProductCatalog(
-                modifier = Modifier.fillMaxSize()
+                modifier = Modifier
+                    .fillMaxSize()
+                    .navigationBarsPadding()
             )
         }
     }

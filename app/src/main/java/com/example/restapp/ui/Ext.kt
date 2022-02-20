@@ -18,5 +18,13 @@ fun Int.toRoubles(): String {
     return "$this ₽"
 }
 
+fun Int.toProductType(): Product.ProductType {
+    Product.ProductType.values().forEach {
+        if (this == it.code)
+            return it
+    }
+    throw Exception("Wrong Product type code")
+}
+
 fun List<ProductDTO>.toProductList(mapper: FromDtoToProductMapper): List<Product> =
     this.map { mapper(it) }

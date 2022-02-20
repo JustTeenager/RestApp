@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
 import com.example.restapp.di.navigation.NavigationFactory
-import com.example.restapp.domain.dto.CartDTO
 import com.example.restapp.ui.main_screen.MainScreen
 import com.example.restapp.ui.theme.RestaurantAppTheme
 import dagger.hilt.android.AndroidEntryPoint

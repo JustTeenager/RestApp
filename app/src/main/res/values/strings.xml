@@ -2,4 +2,7 @@
     <string name="app_name">RestApp</string>
     <string name="fail_title">Упс! Что-то пошло не так и мы не загрузили страницу!</string>
     <string name="but_btn_title">Купить</string>
+    <string name="tab_pizza_title">Пицца</string>
+    <string name="tab_salad_title">Салаты</string>
+    <string name="tab_drinks_title">Напитки</string>
 </resources>

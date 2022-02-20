@@ -3,7 +3,7 @@ package com.example.restapp.data.model
 import com.example.restapp.domain.dto.ProductDTO
 import kotlinx.serialization.SerialName
 
-data class Cart (
+data class Cart(
     val id: Int,
     @SerialName("product_list")
     val productList: List<Pair<Int, ProductDTO>>,
