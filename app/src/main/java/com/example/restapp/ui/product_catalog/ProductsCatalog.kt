@@ -62,7 +62,7 @@ fun ProductCatalog(
 
 class ProductsCatalogNavigationFactory @Inject constructor() : NavigationFactory {
 
-    companion object Companion : NavigationFactoryCompanion<ProductsCatalogNavigationFactory>
+    companion object Companion : NavigationFactoryCompanion
 
     override fun create(builder: NavGraphBuilder, navGraph: NavHostController) {
         builder.composable(

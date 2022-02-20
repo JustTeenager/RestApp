@@ -5,7 +5,7 @@ import androidx.navigation.NavHostController
 
 interface NavigationFactory {
 
-    interface NavigationFactoryCompanion<T> {
+    interface NavigationFactoryCompanion {
         val route: String
             get() = with(javaClass) {
                 `package`.name + canonicalName

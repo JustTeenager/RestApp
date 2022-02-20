@@ -32,7 +32,7 @@ fun DeliveryList(
 class DeliveryListNavigationFactory @Inject constructor() : NavigationFactory {
 
     companion object Companion :
-        NavigationFactory.NavigationFactoryCompanion<DeliveryListNavigationFactory>
+        NavigationFactory.NavigationFactoryCompanion
 
     override fun create(builder: NavGraphBuilder, navGraph: NavHostController) {
         builder.composable(

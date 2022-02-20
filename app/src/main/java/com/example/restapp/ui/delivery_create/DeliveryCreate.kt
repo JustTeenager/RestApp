@@ -34,7 +34,7 @@ fun DeliveryCreate(
 class DeliveryCreateNavigationFactory @Inject constructor() : NavigationFactory {
 
     companion object Companion :
-        NavigationFactory.NavigationFactoryCompanion<DeliveryCreateNavigationFactory>
+        NavigationFactory.NavigationFactoryCompanion
 
     override fun create(builder: NavGraphBuilder, navGraph: NavHostController) {
         builder.composable(

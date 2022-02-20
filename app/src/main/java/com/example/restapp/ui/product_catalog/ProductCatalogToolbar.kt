@@ -41,17 +41,21 @@ fun ProductCatalogToolbar(
         )
 
         TabRow(
-            selectedTabIndex = tabsList.indexOf(currentSelectedType)
+            selectedTabIndex = tabsList
+                .indexOf(currentSelectedType)
         ) {
-            repeat(tabsList.size) {
+            tabsList.forEach {
                 Tab(
-                    modifier = Modifier.padding(MaterialTheme.spacing.small),
-                    selected = currentSelectedType == tabsList[it],
+                    modifier = Modifier,
+                    selected = currentSelectedType == it,
                     onClick = {
-                        onProductTypeSelected(tabsList[it])
+                        onProductTypeSelected(it)
                     }
                 ) {
-                    Text(text = stringResource(tabsList[it].title))
+                    Text(
+                        modifier = Modifier.padding(MaterialTheme.spacing.small),
+                        text = stringResource(it.title)
+                    )
                 }
             }
         }
