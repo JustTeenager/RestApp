@@ -12,11 +12,15 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.BlendMode
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.example.restapp.data.model.Product
+import com.example.restapp.ui.theme.ShadedBlack
 import com.example.restapp.ui.theme.spacing
 
 @Composable
@@ -37,7 +41,11 @@ fun ProductCatalogToolbar(
                 .height(dpAnimate),
             contentScale = ContentScale.FillWidth,
             model = "https://cooking-24.ru/wp-content/uploads/2021/04/12-12.jpg",
-            contentDescription = null
+            contentDescription = null,
+            colorFilter = ColorFilter.tint(
+                color = ShadedBlack,
+                blendMode = BlendMode.Multiply
+            )
         )
 
         TabRow(
