@@ -1,6 +1,7 @@
 package com.example.restapp.ui.product_card
 
-import androidx.lifecycle.ViewModel
+import com.example.restapp.BaseEvent
+import com.example.restapp.BaseViewModel
 import com.example.restapp.data.model.Product
 import com.example.restapp.domain.repository.BuyProductRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -9,9 +10,9 @@ import javax.inject.Inject
 @HiltViewModel
 class ProductCardViewModel @Inject constructor(
     private val buyProductRepository: BuyProductRepository
-) : ViewModel() {
+) : BaseViewModel<ProductCardViewModel.Event>() {
 
-    fun obtainEvent(event: Event) {
+    override fun obtainEvent(event: Event) {
         when (event) {
             is Event.OnProductAdd -> addProductToCart(event.data)
             is Event.OnProductRemove -> removeProductFromCart(event.data)
@@ -26,7 +27,7 @@ class ProductCardViewModel @Inject constructor(
         buyProductRepository.removeProductFromCart(product)
     }
 
-    sealed class Event {
+    sealed class Event : BaseEvent() {
         class OnProductAdd(val data: Product) : Event()
         class OnProductRemove(val data: Product) : Event()
     }

@@ -1,8 +1,9 @@
 package com.example.restapp.ui.product_catalog
 
 import android.util.Log
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.restapp.BaseEvent
+import com.example.restapp.BaseViewModel
 import com.example.restapp.data.model.Product
 import com.example.restapp.domain.repository.LoadProductsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -13,7 +14,7 @@ import javax.inject.Inject
 @HiltViewModel
 class ProductsCatalogViewModel @Inject constructor(
     private val loadProductsRepository: LoadProductsRepository
-) : ViewModel() {
+) : BaseViewModel<ProductsCatalogViewModel.Event>() {
 
     val productsLoadState = MutableStateFlow(LoadingState.LOAD_IN_PROGRESS)
 
@@ -25,7 +26,7 @@ class ProductsCatalogViewModel @Inject constructor(
         }
     }
 
-    fun obtainEvent(event: Event) {
+    override fun obtainEvent(event: Event) {
         Log.d("tut_ProductsCatalog", "event is $event")
         when (event) {
             is Event.OnLoadingStarted -> {
@@ -57,7 +58,7 @@ class ProductsCatalogViewModel @Inject constructor(
         productsLoadState.emit(LoadingState.LOAD_SUCCEED)
     }
 
-    sealed class Event {
+    sealed class Event : BaseEvent() {
         object OnLoadingStarted : Event()
         object OnLoadingFailed : Event()
         class OnLoadingSucceed(val data: List<Product>) : Event()

@@ -20,46 +20,6 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        /*val delivery = CartDTO(
-            0,
-            listOf(
-                1 to ProductDTO(
-                    id = 1,
-                    "Картошка",
-                    100,
-                    "",
-                    "свежая",
-                    listOf("рб"),
-                    1
-                ),
-                1 to ProductDTO(
-                    id = 2,
-                    "Помидоры",
-                    200,
-                    "",
-                    "красные",
-                    listOf("крутота"),
-                    1
-                ),
-                3 to ProductDTO(
-                    id = 3,
-                    "Питса",
-                    300,
-                    "",
-                    "пепперони",
-                    listOf("домашняя"),
-                    1
-                ),
-            ),
-            700,
-            "",
-            null
-        )
-
-        val json = Json.encodeToString(Delivery.serializer(), delivery)
-        Log.d("JSON IS", json)*/
-
         setContent {
             RestaurantAppTheme {
                 // A surface container using the 'background' color from the theme
@@ -74,3 +34,42 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
+
+/*val delivery = CartDTO(
+           0,
+           listOf(
+               1 to ProductDTO(
+                   id = 1,
+                   "Картошка",
+                   100,
+                   "",
+                   "свежая",
+                   listOf("рб"),
+                   1
+               ),
+               1 to ProductDTO(
+                   id = 2,
+                   "Помидоры",
+                   200,
+                   "",
+                   "красные",
+                   listOf("крутота"),
+                   1
+               ),
+               3 to ProductDTO(
+                   id = 3,
+                   "Питса",
+                   300,
+                   "",
+                   "пепперони",
+                   listOf("домашняя"),
+                   1
+               ),
+           ),
+           700,
+           "",
+           null
+       )
+
+       val json = Json.encodeToString(Delivery.serializer(), delivery)
+       Log.d("JSON IS", json)*/
