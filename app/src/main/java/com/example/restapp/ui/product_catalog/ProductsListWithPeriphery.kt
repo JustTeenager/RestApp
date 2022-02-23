@@ -33,10 +33,10 @@ fun ProductsListWithPeriphery(
 
     val isCollapseReached = scrollState.firstVisibleItemIndex > 0
 
-    val scrollSpeedModifier: Float
-    with(LocalDensity.current) {
-        scrollSpeedModifier = 120.dp.toPx()
-    }
+    val scrollSpeedModifier: Float =
+        with(LocalDensity.current) {
+            120.dp.toPx()
+        }
 
     val scrollOffset: Float = min(
         if (isCollapseReached) 0f else 1f,
@@ -54,7 +54,7 @@ fun ProductsListWithPeriphery(
 
         ProductsList(
             modifier = modifier.fillMaxSize(),
-            productList = productList.filter { it.productType == currentSelectedType },
+            productList = productList,
             isShimmerNeeded = isShimmerNeeded,
             scrollState = scrollState
         )

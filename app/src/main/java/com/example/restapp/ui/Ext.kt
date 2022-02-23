@@ -28,3 +28,5 @@ fun Int.toProductType(): Product.ProductType {
 
 fun List<ProductDTO>.toProductList(mapper: FromDtoToProductMapper): List<Product> =
     this.map { mapper(it) }
+
+fun List<Product>.toInitialPairList() = this.map { 0 to it }

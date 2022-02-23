@@ -27,6 +27,10 @@ class ProductCardViewModel @Inject constructor(
         buyProductRepository.removeProductFromCart(product)
     }
 
+    fun getProductCount(product: Product): Int {
+        return buyProductRepository.getProductCount(product)
+    }
+
     sealed class Event : BaseEvent() {
         class OnProductAdd(val data: Product) : Event()
         class OnProductRemove(val data: Product) : Event()

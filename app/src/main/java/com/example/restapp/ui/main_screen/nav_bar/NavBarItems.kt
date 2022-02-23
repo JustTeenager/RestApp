@@ -2,7 +2,7 @@ package com.example.restapp.ui.main_screen.nav_bar
 
 import androidx.annotation.DrawableRes
 import com.example.restapp.R
-import com.example.restapp.ui.delivery_create.DeliveryCreateNavigationFactory
+import com.example.restapp.ui.create_delivery.DeliveryCreateNavigationFactory
 import com.example.restapp.ui.delivery_list.DeliveryListNavigationFactory
 import com.example.restapp.ui.product_catalog.ProductsCatalogNavigationFactory
 

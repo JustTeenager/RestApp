@@ -32,13 +32,16 @@ fun ProductCard(
     viewModel: ProductCardViewModel = hiltViewModel(),
     isShimmerNeed: Boolean = false,
 ) {
+
+    var productsCount by remember {
+        mutableStateOf(viewModel.getProductCount(product))
+    }
+
     var isImageLoaded by remember { mutableStateOf(false) }
 
     var isExpanded by rememberSaveable { mutableStateOf(false) }
 
-    var productsCount by rememberSaveable { mutableStateOf(0) }
-
-    var isRemoveButtonVisible by rememberSaveable { mutableStateOf(false) }
+    val isRemoveButtonVisible = productsCount != 0
 
     Card(
         modifier = modifier
@@ -78,14 +81,14 @@ fun ProductCard(
                         onAddProduct = {
                             viewModel
                                 .obtainEvent(ProductCardViewModel.Event.OnProductAdd(product))
-                            productsCount++
-                            isRemoveButtonVisible = true
+                            productsCount = viewModel.getProductCount(product)
+                            //isRemoveButtonVisible = productsCount.value != 0
                         },
                         onRemoveProduct = {
                             viewModel
                                 .obtainEvent(ProductCardViewModel.Event.OnProductRemove(product))
-                            productsCount--
-                            if (productsCount <= 0) isRemoveButtonVisible = false
+                            productsCount = viewModel.getProductCount(product)
+                            //isRemoveButtonVisible = productsCount.value != 0
                         },
                         price = product.price.toRoubles(),
                         productsCount = productsCount,

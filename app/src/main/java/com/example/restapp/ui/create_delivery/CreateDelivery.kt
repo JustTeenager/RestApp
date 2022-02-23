@@ -1,33 +1,48 @@
-package com.example.restapp.ui.delivery_create
+package com.example.restapp.ui.create_delivery
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
+import android.util.Log
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import com.example.restapp.di.navigation.NavigationFactory
+import com.example.restapp.ui.product_catalog.ProductsList
 import com.example.restapp.ui.theme.spacing
 import javax.inject.Inject
 
 @Composable
 fun DeliveryCreate(
     modifier: Modifier,
-    navController: NavController
+    navController: NavController,
+    deliveryCreateViewModel: DeliveryCreateViewModel = hiltViewModel()
 ) {
-    Box(
-        modifier
-            .background(Color.Green)
-            .padding(MaterialTheme.spacing.medium)
-    ) {
 
+    val productsInCart by deliveryCreateViewModel
+        .productsInCart
+        .collectAsState(initial = listOf())
+
+    Column(
+        modifier
+            .padding(MaterialTheme.spacing.medium),
+    ) {
+        Log.d("CreateDeliveryProducts", productsInCart.toString())
+        ProductsList(
+            modifier = Modifier,
+            productList = productsInCart.map { it.second },
+            isShimmerNeeded = false,
+            scrollState = rememberLazyListState()
+        )
     }
 }
 

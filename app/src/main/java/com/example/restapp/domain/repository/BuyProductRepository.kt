@@ -12,4 +12,8 @@ interface BuyProductRepository {
     fun getProductsCount(): StateFlow<Int>
 
     fun getProductsToBuyFlow(): Flow<List<Pair<Int, Product>>>
+
+    fun getTotalCartPrice(): StateFlow<Int>
+
+    fun getProductCount(product: Product): Int
 }
