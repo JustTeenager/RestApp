@@ -1,6 +1,6 @@
 package com.example.restapp.di.navigation
 
-import com.example.restapp.ui.delivery_create.DeliveryCreateNavigationFactory
+import com.example.restapp.ui.create_delivery.DeliveryCreateNavigationFactory
 import com.example.restapp.ui.delivery_list.DeliveryListNavigationFactory
 import com.example.restapp.ui.product_catalog.ProductsCatalogNavigationFactory
 import dagger.Binds

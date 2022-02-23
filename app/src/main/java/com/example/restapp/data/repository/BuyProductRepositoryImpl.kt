@@ -28,4 +28,12 @@ class BuyProductRepositoryImpl @Inject constructor(
     override fun getProductsToBuyFlow(): Flow<List<Pair<Int, Product>>> {
         return storageManager.productsInCart
     }
+
+    override fun getTotalCartPrice(): StateFlow<Int> {
+        return storageManager.totalPrice.asStateFlow()
+    }
+
+    override fun getProductCount(product: Product): Int {
+        return storageManager.getProductCount(product)
+    }
 }

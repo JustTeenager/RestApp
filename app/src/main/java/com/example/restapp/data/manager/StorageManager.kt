@@ -1,5 +1,6 @@
 package com.example.restapp.data.manager
 
+import android.util.Log
 import com.example.restapp.data.model.Product
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.onEach
@@ -31,13 +32,14 @@ class StorageManager @Inject constructor() {
             val productCount = pairNeeded.first
 
             updateProductsInCart { list ->
-                list.add(pairNeededIndex, pairNeeded.copy(first = productCount + 1))
+                list[pairNeededIndex] = pairNeeded.copy(first = productCount + 1)
             }
         } else {
             updateProductsInCart { list ->
-                list.add(0 to product)
+                list.add(1 to product)
             }
         }
+        Log.d("tut_adding_value", _productsInCart.value.toString())
     }
 
     fun removeProductFromCart(product: Product) {
@@ -47,12 +49,21 @@ class StorageManager @Inject constructor() {
             val productCount = pairNeeded.first
             updateProductsInCart { list ->
                 if (productCount > 1) {
-                    list.add(pairNeededIndex, pairNeeded.copy(first = productCount - 1))
+                    list[pairNeededIndex] = pairNeeded.copy(first = productCount - 1)
                 } else {
                     list.remove(pairNeeded)
                 }
             }
         }
+    }
+
+    fun getProductCount(product: Product): Int {
+        Log.d(
+            "tut_manager_prod_count",
+            _productsInCart.value.find { it.second == product }?.first.toString()
+        )
+        return _productsInCart.value
+            .find { it.second == product }?.first ?: 0
     }
 
     private fun updateProductsInCart(applyChanges: (MutableList<Pair<Int, Product>>) -> Unit) {
