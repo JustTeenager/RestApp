@@ -21,9 +21,7 @@ class ProductsCatalogViewModel @Inject constructor(
     val productsList = MutableStateFlow<List<Product>>(Product.shimmeredProductsList)
 
     init {
-        viewModelScope.launch {
-            obtainEvent(Event.OnLoadingStarted)
-        }
+        viewModelScope.launch { obtainEvent(Event.OnLoadingStarted) }
     }
 
     override fun obtainEvent(event: Event) {
