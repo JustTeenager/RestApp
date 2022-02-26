@@ -3,7 +3,7 @@ package com.example.restapp.di
 import android.util.Log
 import com.example.restapp.data.manager.ApiManagerImpl
 import com.example.restapp.data.manager.MockApiManagerImpl
-import com.example.restapp.domain.contracts.ApiManager
+import com.example.restapp.data.manager_contracts.ApiManager
 import dagger.Binds
 import dagger.Module
 import dagger.Provides

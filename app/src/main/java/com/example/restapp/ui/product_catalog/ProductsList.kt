@@ -21,6 +21,8 @@ fun ProductsList(
         state = scrollState
     ) {
 
+        //TODO Вставить key
+        //TODO Подумать над inner navigation
         items(
             count = productList.size,
             itemContent = { index ->

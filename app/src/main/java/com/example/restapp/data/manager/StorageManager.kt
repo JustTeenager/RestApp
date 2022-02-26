@@ -19,10 +19,10 @@ class StorageManager @Inject constructor() {
                 totalPrice.value = list
                     .sumOf { it.first * it.second.price }
 
-                productsCount.value = list.size
+                productsTotalCount.value = list.size
             }
 
-    val productsCount = MutableStateFlow(0)
+    val productsTotalCount = MutableStateFlow(0)
     val totalPrice = MutableStateFlow(0)
 
     fun addProductToCart(product: Product) {
@@ -58,10 +58,6 @@ class StorageManager @Inject constructor() {
     }
 
     fun getProductCount(product: Product): Int {
-        Log.d(
-            "tut_manager_prod_count",
-            _productsInCart.value.find { it.second == product }?.first.toString()
-        )
         return _productsInCart.value
             .find { it.second == product }?.first ?: 0
     }

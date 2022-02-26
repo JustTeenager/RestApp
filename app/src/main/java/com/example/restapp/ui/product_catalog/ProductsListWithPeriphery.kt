@@ -27,7 +27,8 @@ fun ProductsListWithPeriphery(
         )
     }
 
-    val productList = initialProductsList.filter { it.productType == currentSelectedType }
+    val productList =
+        initialProductsList.filter { it.productType == currentSelectedType }
 
     val scrollState = rememberLazyListState()
 

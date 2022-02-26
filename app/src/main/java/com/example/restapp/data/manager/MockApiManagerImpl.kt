@@ -1,8 +1,9 @@
 package com.example.restapp.data.manager
 
+import com.example.restapp.data.manager_contracts.ApiManager
 import com.example.restapp.data.mapper.FromDtoToProductMapper
+import com.example.restapp.data.model.Cart
 import com.example.restapp.data.model.Product
-import com.example.restapp.domain.contracts.ApiManager
 import com.example.restapp.domain.dto.ProductDTO
 import com.example.restapp.ui.toProductList
 import javax.inject.Inject
@@ -24,4 +25,8 @@ class MockApiManagerImpl @Inject constructor(
                 ).also { this.add(it) }
             }
         }.toProductList(productMapper)
+
+    override suspend fun buyProductlist(dto: Cart) {
+        TODO("Not yet implemented")
+    }
 }
