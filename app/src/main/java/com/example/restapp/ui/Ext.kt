@@ -1,7 +1,10 @@
 package com.example.restapp.ui
 
 import com.example.restapp.data.mapper.FromDtoToProductMapper
+import com.example.restapp.data.mapper.FromProductToDtoMapper
+import com.example.restapp.data.model.Cart
 import com.example.restapp.data.model.Product
+import com.example.restapp.domain.dto.CartDTO
 import com.example.restapp.domain.dto.ProductDTO
 
 suspend fun <T> runRequest(method: suspend () -> T): Result<T> {
@@ -29,4 +32,10 @@ fun Int.toProductType(): Product.ProductType {
 fun List<ProductDTO>.toProductList(mapper: FromDtoToProductMapper): List<Product> =
     this.map { mapper(it) }
 
-fun List<Product>.toInitialPairList() = this.map { 0 to it }
+fun Cart.toDTOCart(mapper: FromProductToDtoMapper): CartDTO = CartDTO(
+    id,
+    productList.map { it.first to mapper(it.second) },
+    totalPrice,
+    address,
+    deliveryState?.code
+)

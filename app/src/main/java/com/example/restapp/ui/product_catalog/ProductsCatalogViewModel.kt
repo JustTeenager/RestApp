@@ -25,7 +25,7 @@ class ProductsCatalogViewModel @Inject constructor(
     }
 
     override fun obtainEvent(event: Event) {
-        Log.d("tut_ProductsCatalog", "event is $event")
+        Log.d("tut_ProductsCatalog_vm", "event is $event")
         when (event) {
             is Event.OnLoadingStarted -> {
                 startLoading()

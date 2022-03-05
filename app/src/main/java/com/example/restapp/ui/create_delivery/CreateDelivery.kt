@@ -1,45 +1,54 @@
 package com.example.restapp.ui.create_delivery
 
-import android.util.Log
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.navigationBarsPadding
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.material.MaterialTheme
+import androidx.compose.material.BottomSheetState
+import androidx.compose.material.BottomSheetValue
+import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import com.example.restapp.di.navigation.NavigationFactory
+import com.example.restapp.ui.create_delivery.footer_bottom_sheet.FooterBottomSheet
 import com.example.restapp.ui.product_catalog.ProductsList
-import com.example.restapp.ui.theme.spacing
 import javax.inject.Inject
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun DeliveryCreate(
     modifier: Modifier,
-    navController: NavController,
     deliveryCreateViewModel: DeliveryCreateViewModel = hiltViewModel()
 ) {
 
-    val productsInCart by deliveryCreateViewModel
-        .productsInCart
-        .collectAsState(initial = listOf())
+    val cart = deliveryCreateViewModel.productCart.collectAsState(null)
 
-    Column(
-        modifier
-            .padding(MaterialTheme.spacing.medium),
+    val productList = cart.value?.productList?.map { it.second } ?: listOf()
+
+    val productCount = deliveryCreateViewModel.productCount.collectAsState(0)
+
+    val state = rememberBottomSheetScaffoldState(
+        bottomSheetState = BottomSheetState(BottomSheetValue.Collapsed)
+    )
+
+    FooterBottomSheet(
+        modifier = modifier
+            .wrapContentSize(),
+        productCount = productCount.value,
+        cart = cart.value,
+        state = state
     ) {
-        Log.d("CreateDeliveryProducts", productsInCart.toString())
         ProductsList(
-            modifier = Modifier,
-            productList = productsInCart.map { it.second },
+            modifier = it
+                .wrapContentSize(Alignment.TopStart),
+            productList = productList,
             isShimmerNeeded = false,
             scrollState = rememberLazyListState()
         )
@@ -59,7 +68,6 @@ class DeliveryCreateNavigationFactory @Inject constructor() : NavigationFactory 
                 modifier = Modifier
                     .fillMaxSize()
                     .navigationBarsPadding(),
-                navController = navGraph
             )
         }
     }

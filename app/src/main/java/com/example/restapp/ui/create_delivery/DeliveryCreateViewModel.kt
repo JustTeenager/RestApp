@@ -1,23 +1,22 @@
 package com.example.restapp.ui.create_delivery
 
-import com.example.restapp.BaseEvent
 import com.example.restapp.BaseViewModel
-import com.example.restapp.domain.repository.BuyProductRepository
+import com.example.restapp.data.model.Cart
+import com.example.restapp.domain.repository.BuyCartRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 @HiltViewModel
 class DeliveryCreateViewModel @Inject constructor(
-    private val buyProductRepository: BuyProductRepository
-) : BaseViewModel<DeliveryCreateViewModel.Event>() {
+    buyCartRepository: BuyCartRepository
+) : BaseViewModel<Nothing>() {
 
-    val productsInCart = buyProductRepository.getProductsToBuyFlow()
+    var productCart: Flow<Cart?> = buyCartRepository
+        .getProductsCart()
 
-    val totalPrice = buyProductRepository.getTotalCartPrice()
+    var productCount = buyCartRepository.getProductsCount()
 
-    override fun obtainEvent(event: Event) {
-        TODO("Not yet implemented")
-    }
+    override fun obtainEvent(event: Nothing) {}
 
-    sealed class Event : BaseEvent()
 }

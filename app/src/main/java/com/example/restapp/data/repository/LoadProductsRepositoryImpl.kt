@@ -1,7 +1,7 @@
 package com.example.restapp.data.repository
 
+import com.example.restapp.data.manager_contracts.ApiManager
 import com.example.restapp.data.model.Product
-import com.example.restapp.domain.contracts.ApiManager
 import com.example.restapp.domain.repository.LoadProductsRepository
 import com.example.restapp.ui.runRequest
 import javax.inject.Inject

@@ -33,7 +33,7 @@ fun ProductCard(
     isShimmerNeed: Boolean = false,
 ) {
 
-    var productsCount by remember {
+    var productCount by remember {
         mutableStateOf(viewModel.getProductCount(product))
     }
 
@@ -41,7 +41,28 @@ fun ProductCard(
 
     var isExpanded by rememberSaveable { mutableStateOf(false) }
 
-    val isRemoveButtonVisible = productsCount != 0
+    var localProductType by remember { mutableStateOf(product.productType) }
+
+    val isRemoveButtonVisible = productCount != 0
+
+    var isProductCountUpdateNeededTrigger by remember {
+        mutableStateOf(false)
+    }
+
+    LaunchedEffect(
+        key1 = isProductCountUpdateNeededTrigger,
+        key2 = product.productType
+    ) {
+        productCount = viewModel.getProductCount(product)
+    }
+
+    SideEffect {
+        if (product.productType != localProductType) {
+            isExpanded = false
+            localProductType = product.productType
+        }
+    }
+
 
     Card(
         modifier = modifier
@@ -60,7 +81,6 @@ fun ProductCard(
         shape = RoundedCornerShape(MaterialTheme.spacing.medium),
     ) {
         Column {
-
             ProductPreview(
                 Modifier,
                 product
@@ -80,18 +100,20 @@ fun ProductCard(
                         modifier = Modifier.align(Start),
                         onAddProduct = {
                             viewModel
-                                .obtainEvent(ProductCardViewModel.Event.OnProductAdd(product))
-                            productsCount = viewModel.getProductCount(product)
-                            //isRemoveButtonVisible = productsCount.value != 0
+                                .obtainEvent(
+                                    ProductCardViewModel.Event.OnProductAdd(product)
+                                )
+                            isProductCountUpdateNeededTrigger = !isProductCountUpdateNeededTrigger
                         },
                         onRemoveProduct = {
                             viewModel
-                                .obtainEvent(ProductCardViewModel.Event.OnProductRemove(product))
-                            productsCount = viewModel.getProductCount(product)
-                            //isRemoveButtonVisible = productsCount.value != 0
+                                .obtainEvent(
+                                    ProductCardViewModel.Event.OnProductRemove(product)
+                                )
+                            isProductCountUpdateNeededTrigger = !isProductCountUpdateNeededTrigger
                         },
                         price = product.price.toRoubles(),
-                        productsCount = productsCount,
+                        productsCount = productCount,
                         isRemoveButtonVisible = isRemoveButtonVisible
                     )
                 }

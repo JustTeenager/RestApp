@@ -47,7 +47,7 @@ fun BuyButton(
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Text(
-                    text = stringResource(id = R.string.but_btn_title),
+                    text = stringResource(id = R.string.buy_btn_title),
                     color = Color.White,
                     style = MaterialTheme.typography.body1
                 )
