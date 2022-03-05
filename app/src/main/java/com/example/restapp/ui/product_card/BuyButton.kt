@@ -69,7 +69,7 @@ fun BuyButton(
                     onRemoveProduct()
                 },
             ) {
-                Text(text = "-")
+                Text(text = stringResource(id = R.string.buy_btn_minus))
             }
         }
 

@@ -22,7 +22,7 @@ fun Footer(
     viewModel: FooterViewModel = hiltViewModel()
 ) {
 
-    var cartString by remember {
+    var address by remember {
         mutableStateOf(cart.address)
     }
 
@@ -32,9 +32,9 @@ fun Footer(
 
         TextField(
             modifier = Modifier.fillMaxWidth(),
-            value = cartString,
+            value = address,
             onValueChange = {
-                cartString = it
+                address = it
                 viewModel.obtainEvent(FooterViewModel.Event.OnAddressChanged(it))
             },
             label = { Text(text = stringResource(R.string.add_address_label)) },
@@ -61,7 +61,9 @@ fun Footer(
 
         Button(
             modifier = Modifier.align(Alignment.CenterHorizontally),
-            onClick = { viewModel.obtainEvent(FooterViewModel.Event.OnBuyConfirmed(cart)) }
+            onClick = {
+                viewModel.obtainEvent(FooterViewModel.Event.OnBuyConfirmed(cart, address))
+            }
         ) {
             Text(text = stringResource(id = R.string.buy_btn_title))
         }

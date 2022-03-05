@@ -33,7 +33,7 @@ fun FailingProductsLoadScreen(
         Image(
             modifier = Modifier.scale(0.75f),
             imageVector = ImageVector.vectorResource(id = R.drawable.ic_fail),
-            contentDescription = "fail_image",
+            contentDescription = null,
         )
 
         Text(

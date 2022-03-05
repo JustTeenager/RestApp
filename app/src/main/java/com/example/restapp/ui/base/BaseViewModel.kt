@@ -1,4 +1,4 @@
-package com.example.restapp
+package com.example.restapp.ui.base
 
 import androidx.lifecycle.ViewModel
 

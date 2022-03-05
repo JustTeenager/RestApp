@@ -6,5 +6,5 @@ import com.example.restapp.data.model.Product
 interface ApiManager {
     suspend fun loadProducts(): List<Product>
 
-    suspend fun buyProductlist(cart: Cart)
+    suspend fun buyProductCart(cart: Cart)
 }

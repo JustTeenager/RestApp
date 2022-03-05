@@ -30,7 +30,6 @@ fun FooterBottomSheet(
         scaffoldState = state,
         sheetContent = {
             cart?.let {
-                Log.d("tut_footer_bottom_sheet", cart.toString())
                 Footer(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -50,7 +49,6 @@ fun FooterBottomSheet(
             content(Modifier.weight(7f))
 
             if (!cart?.productList.isNullOrEmpty()) {
-                Log.d("tut_footer_bottom_sheet", state.bottomSheetState.isExpanded.toString())
                 Button(
                     modifier = Modifier
                         .wrapContentHeight()
@@ -63,9 +61,7 @@ fun FooterBottomSheet(
                         ),
                     onClick = {
                         coroutineScope.launch {
-                            with(state.bottomSheetState) {
-                                expand()
-                            }
+                            state.bottomSheetState.expand()
                         }
                     }
                 ) {

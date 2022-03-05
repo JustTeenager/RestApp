@@ -10,13 +10,9 @@ import javax.inject.Named
 
 class BuyProductRepositoryImpl @Inject constructor(
     private val storageManager: StorageManager,
-    @Named("Mock") mockApiManager: ApiManager,
-    @Named("Api") apiManager: ApiManager
 ) : BuyProductRepository {
 
     private val isMockUsing = true
-
-    private val apiManager: ApiManager = if (isMockUsing) mockApiManager else apiManager
 
     override fun addProductToCart(product: Product) {
         storageManager.addProductToCart(product)

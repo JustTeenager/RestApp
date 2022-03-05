@@ -1,6 +1,6 @@
 package com.example.restapp.ui.create_delivery
 
-import com.example.restapp.BaseViewModel
+import com.example.restapp.ui.base.BaseViewModel
 import com.example.restapp.data.model.Cart
 import com.example.restapp.domain.repository.BuyCartRepository
 import dagger.hilt.android.lifecycle.HiltViewModel

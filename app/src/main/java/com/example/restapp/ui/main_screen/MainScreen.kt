@@ -17,6 +17,7 @@ fun MainScreen(
     val navController = rememberNavController()
 
     Scaffold(
+        modifier = modifier,
         bottomBar = {
             BottomNavBar(
                 items = NavBarItems.values(),

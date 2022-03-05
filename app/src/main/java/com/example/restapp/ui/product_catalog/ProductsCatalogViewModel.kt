@@ -2,8 +2,8 @@ package com.example.restapp.ui.product_catalog
 
 import android.util.Log
 import androidx.lifecycle.viewModelScope
-import com.example.restapp.BaseEvent
-import com.example.restapp.BaseViewModel
+import com.example.restapp.ui.base.BaseEvent
+import com.example.restapp.ui.base.BaseViewModel
 import com.example.restapp.data.model.Product
 import com.example.restapp.domain.repository.LoadProductsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
