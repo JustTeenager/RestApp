@@ -2,8 +2,8 @@ package com.example.restapp.ui.create_delivery.footer_bottom_sheet
 
 import android.util.Log
 import androidx.lifecycle.viewModelScope
-import com.example.restapp.BaseEvent
-import com.example.restapp.BaseViewModel
+import com.example.restapp.ui.base.BaseEvent
+import com.example.restapp.ui.base.BaseViewModel
 import com.example.restapp.data.model.Cart
 import com.example.restapp.domain.repository.BuyCartRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -16,7 +16,7 @@ class FooterViewModel @Inject constructor(
 ) : BaseViewModel<FooterViewModel.Event>() {
 
     sealed class Event : BaseEvent() {
-        class OnBuyConfirmed(val cart: Cart) : Event()
+        class OnBuyConfirmed(val cart: Cart, val address: String) : Event()
         class OnAddressChanged(val address: String) : Event()
     }
 
@@ -24,7 +24,7 @@ class FooterViewModel @Inject constructor(
         Log.d("tut_FooterViewModel", "obtaining event $event")
         when (event) {
             is Event.OnBuyConfirmed -> {
-                confirmBuy(event.cart)
+                confirmBuy(event.cart, event.address)
             }
             is Event.OnAddressChanged -> {
                 changeAddress(event.address)
@@ -33,11 +33,10 @@ class FooterViewModel @Inject constructor(
     }
 
     private fun changeAddress(address: String) {
-        Log.d("tut_FooterViewModel", "setting addr $address")
         buyCartRepository.setCartAddress(address)
     }
 
-    private fun confirmBuy(cart: Cart) = viewModelScope.launch {
-        buyCartRepository.buyCart(cart)
+    private fun confirmBuy(cart: Cart, address: String) = viewModelScope.launch {
+        buyCartRepository.buyCart(cart.copy(address = address))
     }
 }

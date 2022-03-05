@@ -41,6 +41,6 @@ class BuyCartRepositoryImpl @Inject constructor(
     }
 
     override suspend fun buyCart(cart: Cart) {
-        manager.buyProductlist(cart)
+        manager.buyProductCart(cart)
     }
 }

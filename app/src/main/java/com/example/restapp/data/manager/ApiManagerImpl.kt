@@ -1,5 +1,6 @@
 package com.example.restapp.data.manager
 
+import android.util.Log
 import com.example.restapp.data.manager_contracts.ApiManager
 import com.example.restapp.data.mapper.FromDtoToProductMapper
 import com.example.restapp.data.mapper.FromProductToDtoMapper
@@ -12,6 +13,7 @@ import io.ktor.client.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.http.*
+import java.lang.Exception
 import javax.inject.Inject
 
 class ApiManagerImpl @Inject constructor(
@@ -25,11 +27,12 @@ class ApiManagerImpl @Inject constructor(
             .toProductList(dtoToProductMapper)
     }
 
-    override suspend fun buyProductlist(cart: Cart) {
+    override suspend fun buyProductCart(cart: Cart) {
         client.post<HttpResponse> {
             url("url")
             contentType(ContentType.Application.Json)
             body = cart.toDTOCart(productToDtoMapper)
         }
+        throw Exception("Not yet implemented")
     }
 }

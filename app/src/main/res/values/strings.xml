@@ -8,4 +8,5 @@
     <string name="add_address_label">Укажите адрес доставки</string>
     <string name="confirm_cart_btn_title">Подтвердить</string>
     <string name="confirm_cart_go_to_confirm_btn_title">Подтвердить</string>
+    <string name="buy_btn_minus">-</string>
 </resources>

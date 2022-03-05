@@ -1,6 +1,7 @@
 package com.example.restapp.data.manager
 
 import android.util.Log
+import com.example.restapp.data.manager_contracts.StorageManager
 import com.example.restapp.data.model.Product
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -10,7 +11,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class StorageManager @Inject constructor() {
+class StorageManager @Inject constructor(): StorageManager {
 
     private val _productsInCart =
         MutableStateFlow(listOf<Pair<Int, Product>>())
@@ -23,7 +24,7 @@ class StorageManager @Inject constructor() {
 
     val cartAddress = MutableStateFlow("")
 
-    fun addProductToCart(product: Product) {
+    override fun addProductToCart(product: Product) {
         val pairNeeded = _productsInCart.value.find { it.second == product }
         if (pairNeeded != null) {
             val pairNeededIndex = _productsInCart.value.indexOf(pairNeeded)
@@ -39,7 +40,7 @@ class StorageManager @Inject constructor() {
         Log.d("tut_storage_manager", "current cart value is ${productsInCart.value}")
     }
 
-    fun removeProductFromCart(product: Product) {
+    override fun removeProductFromCart(product: Product) {
         val pairNeeded = _productsInCart.value.find { it.second == product }
         if (pairNeeded != null) {
             val pairNeededIndex = _productsInCart.value.indexOf(pairNeeded)
@@ -54,12 +55,12 @@ class StorageManager @Inject constructor() {
         }
     }
 
-    fun getProductCount(product: Product): Int {
+    override fun getProductCount(product: Product): Int {
         return _productsInCart.value
             .find { it.second == product }?.first ?: 0
     }
 
-    fun updateAddress(address: String) {
+    override fun updateAddress(address: String) {
         cartAddress.update { address }
     }
 

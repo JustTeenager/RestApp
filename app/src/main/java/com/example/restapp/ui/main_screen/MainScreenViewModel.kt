@@ -1,6 +1,6 @@
 package com.example.restapp.ui.main_screen
 
-import com.example.restapp.BaseViewModel
+import com.example.restapp.ui.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
