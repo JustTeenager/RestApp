@@ -38,7 +38,7 @@ fun ProductPreview(
                 .build(),
             onError = {
                 onImageLoaded()
-                Log.e("tut", "ERRORING")
+                Log.e("tut_product_img", "ERRORING")
                 it.result.throwable.printStackTrace()
             },
             onSuccess = { onImageLoaded() },

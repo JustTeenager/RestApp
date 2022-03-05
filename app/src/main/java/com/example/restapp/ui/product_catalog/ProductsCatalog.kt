@@ -30,7 +30,7 @@ fun ProductCatalog(
     SwipeRefresh(
         state = rememberSwipeRefreshState(isRefreshNeeded),
         onRefresh = {
-            Log.d("tut_event", "event refresh initiated")
+            Log.d("tut_product_catalog", "event refresh initiated")
             productsCatalogViewModel.obtainEvent(ProductsCatalogViewModel.Event.OnLoadingStarted)
         }
     ) {

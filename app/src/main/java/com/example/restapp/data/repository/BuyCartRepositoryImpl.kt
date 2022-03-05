@@ -1,15 +1,11 @@
 package com.example.restapp.data.repository
 
+import android.util.Log
 import com.example.restapp.data.manager.StorageManager
 import com.example.restapp.data.manager_contracts.ApiManager
 import com.example.restapp.data.model.Cart
 import com.example.restapp.domain.repository.BuyCartRepository
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -19,58 +15,32 @@ class BuyCartRepositoryImpl @Inject constructor(
     @Named("Mock") mockApiManager: ApiManager,
 ) : BuyCartRepository {
 
-    private val _productCart = MutableStateFlow<Cart?>(null)
-
-    private var isProductCartLaunched = false
-
-    val productCart = _productCart.asStateFlow()
-
     private val isMockUsing = true
 
-    val manager = if (isMockUsing) mockApiManager else apiManager
+    private val manager = if (isMockUsing) mockApiManager else apiManager
 
-    private suspend fun initProductsCart() {
-        coroutineScope {
-            launch {
-                storageManager.productsInCart.onEach {
-                    _productCart.emit(
-                        _productCart.value?.copy(
-                            productList = it
-                        ) ?: Cart(
-                            productList = it,
-                            totalPrice = storageManager.totalPrice.value,
-                            address = ""
-                        )
-                    )
-                }
+    override fun getProductsCart(): Flow<Cart?> {
+        Log.d("tut_BuyCartRepo", "gettingProductsCart")
+        return storageManager.cartAddress
+            .combine(storageManager.productsInCart) { address, productInfo ->
+                productInfo to address
             }
-            launch {
-                storageManager.totalPrice.onEach {
-                    _productCart.emit(
-                        _productCart.value?.copy(
-                            totalPrice = it
-                        ) ?: Cart(
-                            productList = listOf(),
-                            totalPrice = it,
-                            address = ""
-                        )
-                    )
-                }
+            .zip(storageManager.totalPrice.asStateFlow()) { productInfoWithAddress, price ->
+                Cart(
+                    productList = productInfoWithAddress.first,
+                    totalPrice = price,
+                    address = productInfoWithAddress.second
+                )
             }
-        }
     }
 
-    override suspend fun getProductsCart(): StateFlow<Cart?> {
-        if (!isProductCartLaunched) {
-            initProductsCart()
-            isProductCartLaunched = true
-        }
-        return productCart
+    override fun getProductsCount(): Flow<Int> = storageManager.productsTotalCount.asStateFlow()
+
+    override fun setCartAddress(address: String) {
+        storageManager.updateAddress(address)
     }
 
-    override suspend fun buyCart() {
-        _productCart.value?.let {
-            manager.buyProductlist(it)
-        }
+    override suspend fun buyCart(cart: Cart) {
+        manager.buyProductlist(cart)
     }
 }

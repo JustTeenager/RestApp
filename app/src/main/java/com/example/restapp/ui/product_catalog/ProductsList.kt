@@ -1,6 +1,7 @@
 package com.example.restapp.ui.product_catalog
 
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.runtime.Composable
@@ -17,8 +18,10 @@ fun ProductsList(
 ) {
 
     LazyColumn(
-        modifier = modifier.fillMaxSize(),
-        state = scrollState
+        modifier = modifier
+            .fillMaxWidth()
+            .wrapContentHeight(),
+        state = scrollState,
     ) {
 
         //TODO Вставить key

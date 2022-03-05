@@ -3,7 +3,9 @@ package com.example.restapp.data.manager
 import android.util.Log
 import com.example.restapp.data.model.Product
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.flow.updateAndGet
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -13,24 +15,19 @@ class StorageManager @Inject constructor() {
     private val _productsInCart =
         MutableStateFlow(listOf<Pair<Int, Product>>())
 
-    val productsInCart =
-        _productsInCart
-            .onEach { list ->
-                totalPrice.value = list
-                    .sumOf { it.first * it.second.price }
-
-                productsTotalCount.value = list.size
-            }
+    val productsInCart
+        get() = _productsInCart.asStateFlow()
 
     val productsTotalCount = MutableStateFlow(0)
     val totalPrice = MutableStateFlow(0)
+
+    val cartAddress = MutableStateFlow("")
 
     fun addProductToCart(product: Product) {
         val pairNeeded = _productsInCart.value.find { it.second == product }
         if (pairNeeded != null) {
             val pairNeededIndex = _productsInCart.value.indexOf(pairNeeded)
             val productCount = pairNeeded.first
-
             updateProductsInCart { list ->
                 list[pairNeededIndex] = pairNeeded.copy(first = productCount + 1)
             }
@@ -39,7 +36,7 @@ class StorageManager @Inject constructor() {
                 list.add(1 to product)
             }
         }
-        Log.d("tut_adding_value", _productsInCart.value.toString())
+        Log.d("tut_storage_manager", "current cart value is ${productsInCart.value}")
     }
 
     fun removeProductFromCart(product: Product) {
@@ -62,10 +59,30 @@ class StorageManager @Inject constructor() {
             .find { it.second == product }?.first ?: 0
     }
 
-    private fun updateProductsInCart(applyChanges: (MutableList<Pair<Int, Product>>) -> Unit) {
-        _productsInCart.value = mutableListOf<Pair<Int, Product>>().apply {
-            addAll(_productsInCart.value)
-            applyChanges(this)
-        }.toList()
+    fun updateAddress(address: String) {
+        cartAddress.update { address }
+    }
+
+    private fun updateProductsInCart(
+        applyChanges: (MutableList<Pair<Int, Product>>) -> Unit
+    ) {
+        _productsInCart.updateAndGet {
+            mutableListOf<Pair<Int, Product>>().apply {
+                addAll(_productsInCart.value)
+                applyChanges(this)
+            }
+        }.also { list ->
+            updateCostAndCount(list)
+        }
+    }
+
+    private fun updateCostAndCount(list: List<Pair<Int, Product>>) {
+        totalPrice.update {
+            list.sumOf { it.first * it.second.price }
+        }
+
+        productsTotalCount.update {
+            list.sumOf { it.first }
+        }
     }
 }
