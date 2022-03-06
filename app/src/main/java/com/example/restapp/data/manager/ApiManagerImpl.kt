@@ -1,6 +1,5 @@
 package com.example.restapp.data.manager
 
-import android.util.Log
 import com.example.restapp.data.manager_contracts.ApiManager
 import com.example.restapp.data.mapper.FromDtoToProductMapper
 import com.example.restapp.data.mapper.FromProductToDtoMapper
@@ -13,7 +12,6 @@ import io.ktor.client.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.http.*
-import java.lang.Exception
 import javax.inject.Inject
 
 class ApiManagerImpl @Inject constructor(

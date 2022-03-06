@@ -1,9 +1,9 @@
 package com.example.restapp.ui.product_card
 
-import com.example.restapp.ui.base.BaseEvent
-import com.example.restapp.ui.base.BaseViewModel
 import com.example.restapp.data.model.Product
 import com.example.restapp.domain.repository.BuyProductRepository
+import com.example.restapp.ui.base.BaseEvent
+import com.example.restapp.ui.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

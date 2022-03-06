@@ -1,11 +1,9 @@
 package com.example.restapp.data.repository
 
 import com.example.restapp.data.manager.StorageManager
-import com.example.restapp.data.manager_contracts.ApiManager
 import com.example.restapp.data.model.Product
 import com.example.restapp.domain.repository.BuyProductRepository
 import javax.inject.Inject
-import javax.inject.Named
 
 
 class BuyProductRepositoryImpl @Inject constructor(

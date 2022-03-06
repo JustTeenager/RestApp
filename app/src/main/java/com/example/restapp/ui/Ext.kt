@@ -16,11 +16,6 @@ suspend fun <T> runRequest(method: suspend () -> T): Result<T> {
     }
 }
 
-//TODO Стринг ресурс
-fun Int.toRoubles(): String {
-    return "$this ₽"
-}
-
 fun Int.toProductType(): Product.ProductType {
     Product.ProductType.values().forEach {
         if (this == it.code)

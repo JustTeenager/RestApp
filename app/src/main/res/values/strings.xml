@@ -9,4 +9,7 @@
     <string name="confirm_cart_btn_title">Подтвердить</string>
     <string name="confirm_cart_go_to_confirm_btn_title">Подтвердить</string>
     <string name="buy_btn_minus">-</string>
+    <string name="cart_price_convertion">%s ₽</string>
+    <string name="cart_price_title">Цена: </string>
+    <string name="cart_count_title">Количество: %s</string>
 </resources>

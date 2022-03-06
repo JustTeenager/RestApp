@@ -1,11 +1,10 @@
 package com.example.restapp.ui.create_delivery.footer_bottom_sheet
 
-import android.util.Log
 import androidx.lifecycle.viewModelScope
-import com.example.restapp.ui.base.BaseEvent
-import com.example.restapp.ui.base.BaseViewModel
 import com.example.restapp.data.model.Cart
 import com.example.restapp.domain.repository.BuyCartRepository
+import com.example.restapp.ui.base.BaseEvent
+import com.example.restapp.ui.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -21,7 +20,6 @@ class FooterViewModel @Inject constructor(
     }
 
     override fun obtainEvent(event: Event) {
-        Log.d("tut_FooterViewModel", "obtaining event $event")
         when (event) {
             is Event.OnBuyConfirmed -> {
                 confirmBuy(event.cart, event.address)
@@ -31,6 +29,8 @@ class FooterViewModel @Inject constructor(
             }
         }
     }
+
+    fun getAddress() = buyCartRepository.getCartAddress()
 
     private fun changeAddress(address: String) {
         buyCartRepository.setCartAddress(address)

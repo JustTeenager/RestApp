@@ -1,6 +1,5 @@
 package com.example.restapp.ui.create_delivery.footer_bottom_sheet
 
-import android.util.Log
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
