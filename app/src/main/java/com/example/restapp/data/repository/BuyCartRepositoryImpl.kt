@@ -18,7 +18,7 @@ class BuyCartRepositoryImpl @Inject constructor(
     @Named("Mock") mockApiManager: ApiManager,
 ) : BuyCartRepository {
 
-    private val isMockUsing = true
+    private val isMockUsing = false
 
     private val manager = if (isMockUsing) mockApiManager else apiManager
 

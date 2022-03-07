@@ -10,8 +10,6 @@ class BuyProductRepositoryImpl @Inject constructor(
     private val storageManager: StorageManager,
 ) : BuyProductRepository {
 
-    private val isMockUsing = true
-
     override fun addProductToCart(product: Product) {
         storageManager.addProductToCart(product)
     }
@@ -23,8 +21,4 @@ class BuyProductRepositoryImpl @Inject constructor(
     override fun getProductCount(product: Product): Int {
         return storageManager.getProductCount(product)
     }
-
-    /* suspend fun buyProductlist() {
-         return apiManager.buyProductlist(storageManager.getCartDTO())
-     }*/
 }
