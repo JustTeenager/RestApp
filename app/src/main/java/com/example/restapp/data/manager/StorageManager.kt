@@ -11,7 +11,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class StorageManager @Inject constructor(): StorageManager {
+class StorageManager @Inject constructor() : StorageManager {
 
     private val _productsInCart =
         MutableStateFlow(listOf<Pair<Int, Product>>())

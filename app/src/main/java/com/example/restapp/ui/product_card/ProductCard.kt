@@ -14,11 +14,12 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment.Companion.Start
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.restapp.R
 import com.example.restapp.data.model.Product
 import com.example.restapp.ui.theme.spacing
-import com.example.restapp.ui.toRoubles
 import com.google.accompanist.placeholder.PlaceholderHighlight
 import com.google.accompanist.placeholder.placeholder
 import com.google.accompanist.placeholder.shimmer
@@ -112,7 +113,10 @@ fun ProductCard(
                                 )
                             isProductCountUpdateNeededTrigger = !isProductCountUpdateNeededTrigger
                         },
-                        price = product.price.toRoubles(),
+                        price = stringResource(
+                            R.string.cart_price_convertion,
+                            product.price.toString()
+                        ),
                         productsCount = productCount,
                         isRemoveButtonVisible = isRemoveButtonVisible
                     )

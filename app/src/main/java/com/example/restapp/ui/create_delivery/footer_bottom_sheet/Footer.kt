@@ -4,11 +4,16 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
-import androidx.compose.material.TextField
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.withStyle
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.restapp.R
 import com.example.restapp.data.model.Cart
@@ -22,23 +27,15 @@ fun Footer(
     viewModel: FooterViewModel = hiltViewModel()
 ) {
 
-    var address by remember {
-        mutableStateOf(cart.address)
-    }
-
     Column(
         modifier = modifier
     ) {
-
-        TextField(
-            modifier = Modifier.fillMaxWidth(),
-            value = address,
-            onValueChange = {
-                address = it
-                viewModel.obtainEvent(FooterViewModel.Event.OnAddressChanged(it))
-            },
-            label = { Text(text = stringResource(R.string.add_address_label)) },
-            isError = cart.address.isEmpty(),
+        EmailTextInput(
+            modifier = Modifier
+                .fillMaxWidth()
+                .wrapContentHeight(),
+            initialAddress = cart.address,
+            onValueChanged = { viewModel.obtainEvent(FooterViewModel.Event.OnAddressChanged(it)) }
         )
 
         Spacer(modifier = Modifier.height(MaterialTheme.spacing.medium))
@@ -47,22 +44,43 @@ fun Footer(
             modifier = Modifier
                 .fillMaxWidth()
                 .wrapContentHeight(),
-            horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Text(
-                text = cart.totalPrice.toString()
+                modifier = Modifier.weight(1f),
+                text = buildAnnotatedString {
+                    append(stringResource(id = R.string.cart_price_title))
+                    withStyle(style = SpanStyle(color = Color.Red)) {
+                        append(
+                            stringResource(
+                                R.string.cart_price_convertion,
+                                cart.totalPrice.toString()
+                            )
+                        )
+                    }
+                },
+                style = MaterialTheme.typography.subtitle1,
+                fontSize = 20.sp,
             )
             Text(
-                text = productCount.toString()
+                modifier = Modifier.weight(1f),
+                text = stringResource(R.string.cart_count_title, productCount.toString()),
+                style = MaterialTheme.typography.subtitle1,
+                fontSize = 20.sp,
+                textAlign = TextAlign.End
             )
         }
 
         Spacer(modifier = Modifier.height(MaterialTheme.spacing.small))
 
         Button(
-            modifier = Modifier.align(Alignment.CenterHorizontally),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(MaterialTheme.spacing.extraLarge)
+                .align(Alignment.CenterHorizontally),
             onClick = {
-                viewModel.obtainEvent(FooterViewModel.Event.OnBuyConfirmed(cart, address))
+                viewModel.obtainEvent(
+                    FooterViewModel.Event.OnBuyConfirmed(cart, viewModel.getAddress())
+                )
             }
         ) {
             Text(text = stringResource(id = R.string.buy_btn_title))

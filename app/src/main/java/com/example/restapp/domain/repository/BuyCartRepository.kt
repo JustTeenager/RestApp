@@ -9,7 +9,8 @@ interface BuyCartRepository {
 
     fun getProductsCount(): Flow<Int>
 
-    //TODO В отдельное репо покупка и адрес
+    //TODO Мы не должны запрашивать это отдельно, косяк
+    fun getCartAddress(): String
 
     fun setCartAddress(address: String)
 

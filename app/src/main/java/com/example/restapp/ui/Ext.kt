@@ -1,5 +1,6 @@
 package com.example.restapp.ui
 
+import android.util.Log
 import com.example.restapp.data.mapper.FromDtoToProductMapper
 import com.example.restapp.data.mapper.FromProductToDtoMapper
 import com.example.restapp.data.model.Cart
@@ -14,11 +15,6 @@ suspend fun <T> runRequest(method: suspend () -> T): Result<T> {
         e.printStackTrace()
         Result.failure(e)
     }
-}
-
-//TODO Стринг ресурс
-fun Int.toRoubles(): String {
-    return "$this ₽"
 }
 
 fun Int.toProductType(): Product.ProductType {

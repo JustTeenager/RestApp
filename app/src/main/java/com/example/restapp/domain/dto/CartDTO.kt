@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class CartDTO(
     val id: Int? = null,
-    @SerialName("product_list")
+    @SerialName("products_list")
     val productList: List<Pair<Int, ProductDTO>>,
     @SerialName("total_price")
     val totalPrice: Int,

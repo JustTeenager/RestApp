@@ -23,15 +23,17 @@ data class Product(
                     imgUrl = "",
                     description = "",
                     tags = listOf(),
-                    productType = (num % ProductType.values().size).toProductType()
+                    productType = ProductType.values().map { it.code }.random().toProductType()
                 ).also { add(it) }
             }
         }
     }
 
     enum class ProductType(val code: Int, @StringRes val title: Int) {
-        PIZZA(0, R.string.tab_pizza_title),
-        DRINKS(1, R.string.tab_drinks_title),
-        SALAD(2, R.string.tab_salad_title)
+        PIZZA(4, R.string.tab_pizza_title),
+        PASTA(3, R.string.tab_pasta_title),
+        VINE(7, R.string.tab_vine_title),
+        SOUP(8, R.string.tab_soup_title),
+        DESERT(9, R.string.tab_desert_title)
     }
 }

@@ -3,10 +3,17 @@
     <string name="fail_title">Упс! Что-то пошло не так и мы не загрузили страницу!</string>
     <string name="buy_btn_title">Купить</string>
     <string name="tab_pizza_title">Пицца</string>
+    <string name="tab_pasta_title">Паста</string>
     <string name="tab_salad_title">Салаты</string>
     <string name="tab_drinks_title">Напитки</string>
     <string name="add_address_label">Укажите адрес доставки</string>
     <string name="confirm_cart_btn_title">Подтвердить</string>
     <string name="confirm_cart_go_to_confirm_btn_title">Подтвердить</string>
     <string name="buy_btn_minus">-</string>
+    <string name="cart_price_convertion">%s ₽</string>
+    <string name="cart_price_title">Цена: </string>
+    <string name="cart_count_title">Количество: %s</string>
+    <string name="tab_vine_title">Вино</string>
+    <string name="tab_soup_title">Суп</string>
+    <string name="tab_desert_title">Десерт</string>
 </resources>

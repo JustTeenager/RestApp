@@ -5,7 +5,10 @@ import com.example.restapp.data.manager.StorageManager
 import com.example.restapp.data.manager_contracts.ApiManager
 import com.example.restapp.data.model.Cart
 import com.example.restapp.domain.repository.BuyCartRepository
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.zip
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -35,6 +38,8 @@ class BuyCartRepositoryImpl @Inject constructor(
     }
 
     override fun getProductsCount(): Flow<Int> = storageManager.productsTotalCount.asStateFlow()
+
+    override fun getCartAddress(): String = storageManager.cartAddress.value
 
     override fun setCartAddress(address: String) {
         storageManager.updateAddress(address)

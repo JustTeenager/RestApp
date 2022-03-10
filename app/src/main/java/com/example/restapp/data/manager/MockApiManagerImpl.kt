@@ -10,6 +10,7 @@ import com.example.restapp.domain.dto.CartDTO
 import com.example.restapp.domain.dto.ProductDTO
 import com.example.restapp.ui.toDTOCart
 import com.example.restapp.ui.toProductList
+import com.example.restapp.ui.toProductType
 import kotlinx.serialization.json.Json
 import javax.inject.Inject
 
@@ -27,7 +28,7 @@ class MockApiManagerImpl @Inject constructor(
                     "https://cooking-24.ru/wp-content/uploads/2021/04/12-12.jpg",
                     "Продукт превосходного содержания",
                     listOf("Салатец", "Вкуснотища", "Оливочки", "Острый", "100гр"),
-                    num % Product.ProductType.values().size
+                    Product.ProductType.values().map { it.code }.random()
                 ).also { this.add(it) }
             }
         }.toProductList(dtoToProductMapper)

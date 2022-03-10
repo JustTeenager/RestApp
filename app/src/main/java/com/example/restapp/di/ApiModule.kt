@@ -29,7 +29,7 @@ class ApiModule {
     fun provideKtorClient(): HttpClient = HttpClient(Android) {
 
         defaultRequest {
-            host = "192.168.162.2:8000/api"
+            host = "192.168.1.105:8000/api"
             url { protocol = URLProtocol.HTTP }
         }
 
