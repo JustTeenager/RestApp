@@ -12,7 +12,7 @@ class LoadProductsRepositoryImpl @Inject constructor(
     @Named("Api") apiManager: ApiManager
 ) : LoadProductsRepository {
 
-    private val isMockUsing = false
+    private val isMockUsing = true
 
     private val manager: ApiManager = if (isMockUsing) mockApiManager else apiManager
 
