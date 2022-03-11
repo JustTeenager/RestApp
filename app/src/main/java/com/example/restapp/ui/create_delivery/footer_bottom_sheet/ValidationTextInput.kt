@@ -1,5 +1,6 @@
 package com.example.restapp.ui.create_delivery.footer_bottom_sheet
 
+import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.MaterialTheme
@@ -9,17 +10,20 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
-import com.example.restapp.R
 
 @Composable
-fun EmailTextInput(
+fun ValidationTextInput(
     modifier: Modifier,
-    initialAddress: String,
-    onValueChanged: (String) -> Unit
+    initialField: String,
+    onValueChanged: (String) -> Unit = { },
+    checkIfError: (String) -> Boolean = { false },
+    @StringRes labelText: Int,
+    @StringRes placeHolderText: Int,
+    @StringRes errorText: Int
 ) {
 
-    var address by remember {
-        mutableStateOf(initialAddress)
+    var field by remember {
+        mutableStateOf(initialField)
     }
 
     Column(
@@ -27,18 +31,18 @@ fun EmailTextInput(
     ) {
         TextField(
             modifier = Modifier.fillMaxWidth(),
-            value = address,
+            value = field,
             onValueChange = {
-                address = it
+                field = it
                 onValueChanged(it)
             },
-            placeholder = { Text(text = stringResource(R.string.add_address_label)) },
-            label = { Text(text = stringResource(R.string.add_address_label)) },
-            isError = address.isEmpty(),
+            placeholder = { Text(text = stringResource(placeHolderText)) },
+            label = { Text(text = stringResource(labelText)) },
+            isError = checkIfError(field),
         )
-        if (address.isEmpty()) {
+        if (checkIfError(field)) {
             Text(
-                text = "Ошибочка вышла",
+                text = stringResource(errorText),
                 color = Color.Red,
                 style = MaterialTheme.typography.body2
             )

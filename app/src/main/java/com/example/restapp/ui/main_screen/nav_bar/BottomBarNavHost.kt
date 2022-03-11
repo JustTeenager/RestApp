@@ -12,7 +12,7 @@ fun BottomBarNavHost(
 ) {
     NavHost(
         navController = navController,
-        startDestination = NavBarItems.Products.route
+        startDestination = NavItem.NavBarItems.Products.route
     ) {
         routesSet.forEach {
             it.create(this, navController)
