@@ -16,4 +16,6 @@
     <string name="tab_vine_title">Вино</string>
     <string name="tab_soup_title">Суп</string>
     <string name="tab_desert_title">Десерт</string>
+    <string name="num_help_text">"Номер: 8 800 555 35 35"</string>
+    <string name="addr_help_text">"Наш адрес: Улица Пушкина, дом Колотушкина, 1"</string>
 </resources>

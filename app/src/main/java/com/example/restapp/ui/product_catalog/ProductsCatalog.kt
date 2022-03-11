@@ -12,6 +12,7 @@ import androidx.navigation.compose.composable
 import com.example.restapp.di.navigation.NavigationFactory
 import com.example.restapp.di.navigation.NavigationFactory.NavigationFactoryCompanion
 import com.example.restapp.ui.product_catalog.ProductsCatalogViewModel.LoadingState.*
+import com.example.restapp.ui.product_catalog.products_list.ProductsListWithPeriphery
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import javax.inject.Inject

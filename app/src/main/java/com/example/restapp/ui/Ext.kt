@@ -1,6 +1,5 @@
 package com.example.restapp.ui
 
-import android.util.Log
 import com.example.restapp.data.mapper.FromDtoToProductMapper
 import com.example.restapp.data.mapper.FromProductToDtoMapper
 import com.example.restapp.data.model.Cart

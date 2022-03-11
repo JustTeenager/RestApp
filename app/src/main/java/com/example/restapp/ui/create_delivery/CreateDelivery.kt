@@ -18,7 +18,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import com.example.restapp.di.navigation.NavigationFactory
 import com.example.restapp.ui.create_delivery.footer_bottom_sheet.FooterBottomSheet
-import com.example.restapp.ui.product_catalog.ProductsList
+import com.example.restapp.ui.product_catalog.products_list.ProductsList
 import javax.inject.Inject
 
 @OptIn(ExperimentalMaterialApi::class)

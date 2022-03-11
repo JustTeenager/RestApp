@@ -10,7 +10,6 @@ import com.example.restapp.domain.dto.CartDTO
 import com.example.restapp.domain.dto.ProductDTO
 import com.example.restapp.ui.toDTOCart
 import com.example.restapp.ui.toProductList
-import com.example.restapp.ui.toProductType
 import kotlinx.serialization.json.Json
 import javax.inject.Inject
 
