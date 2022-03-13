@@ -1,4 +1,4 @@
-package com.example.restapp.ui.main_screen.nav_bar
+package com.example.restapp.ui.rest_screen.nav_bar
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.BottomNavigation
@@ -8,14 +8,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavController
+import androidx.navigation.compose.currentBackStackEntryAsState
 
 @Composable
 fun BottomNavBar(
     items: Array<NavItem.NavBarItems>,
     navController: NavController
 ) {
-    val navControllerBackStackEntry = navController.currentBackStackEntry
-    val route = navControllerBackStackEntry?.destination?.route
+    val navControllerBackStackEntry = navController.currentBackStackEntryAsState()
+    val route = navControllerBackStackEntry.value?.destination?.route
 
     BottomNavigation(
         modifier = Modifier
