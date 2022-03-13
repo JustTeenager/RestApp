@@ -10,7 +10,6 @@ import com.example.restapp.domain.dto.CartDTO
 import com.example.restapp.domain.dto.ProductDTO
 import com.example.restapp.ui.toDTOCart
 import com.example.restapp.ui.toProductList
-import com.example.restapp.ui.toProductType
 import io.ktor.client.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
@@ -30,7 +29,7 @@ class ApiManagerImpl @Inject constructor(
     }
 
     override suspend fun buyProductCart(cart: Cart) {
-        Log.d("tut",Json.encodeToString(CartDTO.serializer(), cart.toDTOCart(productToDtoMapper)))
+        Log.d("tut", Json.encodeToString(CartDTO.serializer(), cart.toDTOCart(productToDtoMapper)))
         client.post<HttpResponse> {
             url("/carts/")
             contentType(ContentType.Application.Json)

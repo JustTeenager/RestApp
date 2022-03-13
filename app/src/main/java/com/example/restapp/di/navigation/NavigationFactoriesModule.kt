@@ -1,8 +1,10 @@
 package com.example.restapp.di.navigation
 
+import com.example.restapp.ui.authorization.AuthorizationScreenFactory
 import com.example.restapp.ui.create_delivery.DeliveryCreateNavigationFactory
 import com.example.restapp.ui.delivery_list.DeliveryListNavigationFactory
 import com.example.restapp.ui.product_catalog.ProductsCatalogNavigationFactory
+import com.example.restapp.ui.rest_screen.RestaurantScreenFactory
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -17,15 +19,26 @@ abstract class NavigationFactoriesModule {
     @Binds
     @IntoSet
     @Singleton
-    abstract fun bindProductsCatalogFactory(factory: ProductsCatalogNavigationFactory): NavigationFactory
+    abstract fun bindProductsCatalogFactory(factory: ProductsCatalogNavigationFactory): NavigationScreenFactory
 
     @Binds
     @IntoSet
     @Singleton
-    abstract fun bindDeliveryCreateFactory(factory: DeliveryCreateNavigationFactory): NavigationFactory
+    abstract fun bindDeliveryCreateFactory(factory: DeliveryCreateNavigationFactory): NavigationScreenFactory
 
     @Binds
     @IntoSet
     @Singleton
-    abstract fun bindDeliveryListFactory(factory: DeliveryListNavigationFactory): NavigationFactory
+    abstract fun bindDeliveryListFactory(factory: DeliveryListNavigationFactory): NavigationScreenFactory
+
+    @Binds
+    @IntoSet
+    @Singleton
+    abstract fun bindAuthorizationFactory(factory: AuthorizationScreenFactory): NavigationScreenFactory
+
+    @Binds
+    @IntoSet
+    @Singleton
+    abstract fun bindRestaurantFactory(factory: RestaurantScreenFactory): NavigationHostFactory
+
 }

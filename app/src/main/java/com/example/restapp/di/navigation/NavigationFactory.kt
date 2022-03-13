@@ -5,6 +5,8 @@ import androidx.navigation.NavHostController
 
 interface NavigationFactory {
 
+    val factoryType: List<NavigationFactoryType>
+
     interface NavigationFactoryCompanion {
         val route: String
             get() = with(javaClass) {
@@ -17,3 +19,12 @@ interface NavigationFactory {
         navGraph: NavHostController
     )
 }
+
+enum class NavigationFactoryType {
+    Login,
+    Restaurant
+}
+
+interface NavigationScreenFactory : NavigationFactory
+
+interface NavigationHostFactory : NavigationFactory

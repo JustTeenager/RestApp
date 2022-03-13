@@ -10,8 +10,10 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import com.example.restapp.di.navigation.NavigationFactory
-import com.example.restapp.di.navigation.NavigationFactory.NavigationFactoryCompanion
+import com.example.restapp.di.navigation.NavigationFactoryType
+import com.example.restapp.di.navigation.NavigationScreenFactory
 import com.example.restapp.ui.product_catalog.ProductsCatalogViewModel.LoadingState.*
+import com.example.restapp.ui.product_catalog.products_list.ProductsListWithPeriphery
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import javax.inject.Inject
@@ -60,9 +62,12 @@ fun ProductCatalog(
     }
 }
 
-class ProductsCatalogNavigationFactory @Inject constructor() : NavigationFactory {
+class ProductsCatalogNavigationFactory @Inject constructor() : NavigationScreenFactory {
 
-    companion object Companion : NavigationFactoryCompanion
+    companion object Companion : NavigationFactory.NavigationFactoryCompanion
+
+    override val factoryType: List<NavigationFactoryType>
+        get() = listOf(NavigationFactoryType.Restaurant)
 
     override fun create(builder: NavGraphBuilder, navGraph: NavHostController) {
         builder.composable(

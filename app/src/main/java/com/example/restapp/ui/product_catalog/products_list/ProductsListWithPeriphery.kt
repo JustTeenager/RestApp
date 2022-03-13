@@ -1,4 +1,4 @@
-package com.example.restapp.ui.product_catalog
+package com.example.restapp.ui.product_catalog.products_list
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Column
@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
 import com.example.restapp.data.model.Product
+import com.example.restapp.ui.product_catalog.periphery.ProductCatalogToolbar
 import kotlin.math.min
 
 @OptIn(ExperimentalFoundationApi::class)

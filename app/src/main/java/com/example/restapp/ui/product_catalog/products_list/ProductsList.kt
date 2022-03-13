@@ -1,4 +1,4 @@
-package com.example.restapp.ui.product_catalog
+package com.example.restapp.ui.product_catalog.products_list
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.wrapContentHeight
