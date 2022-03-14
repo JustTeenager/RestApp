@@ -19,4 +19,8 @@
     <string name="num_help_text">Номер: 8 800 555 35 35</string>
     <string name="addr_help_text">Наш адрес: Улица Пушкина, дом Колотушкина, 1</string>
     <string name="addr_error_text">Ошибка в написании адреса</string>
+    <string name="authorization_login_placeholder">Введите логин</string>
+    <string name="authorization_login_error">Неверный логин</string>
+    <string name="authorization_password_placeholder">Введите пароль</string>
+    <string name="authorization_password_error">Неверный пароль</string>
 </resources>

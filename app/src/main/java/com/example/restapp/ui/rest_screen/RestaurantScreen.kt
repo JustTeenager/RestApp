@@ -9,7 +9,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.restapp.di.navigation.NavigationFactory
-import com.example.restapp.di.navigation.NavigationFactoryType
 import com.example.restapp.di.navigation.NavigationHostFactory
 import com.example.restapp.di.navigation.NavigationScreenFactory
 import com.example.restapp.ui.filter
@@ -49,15 +48,15 @@ class RestaurantScreenFactory @Inject constructor(
 
     companion object Companion : NavigationFactory.NavigationFactoryCompanion
 
-    override val factoryType: List<NavigationFactoryType>
-        get() = listOf(NavigationFactoryType.Login)
+    override val factoryType: List<NavigationFactory.NavigationFactoryType>
+        get() = listOf(NavigationFactory.NavigationFactoryType.Login)
 
     override fun create(builder: NavGraphBuilder, navGraph: NavHostController) {
         builder.composable(route = route) {
             RestaurantScreen(
                 modifier = Modifier,
                 navigationFactoryList = navigationFactorySet
-                    .filter(NavigationFactoryType.Restaurant)
+                    .filter(NavigationFactory.NavigationFactoryType.Restaurant)
             )
         }
     }

@@ -1,7 +1,7 @@
-package com.example.restapp.data.manager
+package com.example.restapp.data.manager.api.product
 
 import android.util.Log
-import com.example.restapp.data.manager_contracts.ApiManager
+import com.example.restapp.data.manager_contracts.ProductApiManager
 import com.example.restapp.data.mapper.FromDtoToProductMapper
 import com.example.restapp.data.mapper.FromProductToDtoMapper
 import com.example.restapp.data.model.Cart
@@ -13,10 +13,10 @@ import com.example.restapp.ui.toProductList
 import kotlinx.serialization.json.Json
 import javax.inject.Inject
 
-class MockApiManagerImpl @Inject constructor(
+class MockProductApiManagerImpl @Inject constructor(
     private val dtoToProductMapper: FromDtoToProductMapper,
     private val productToDtoMapper: FromProductToDtoMapper
-) : ApiManager {
+) : ProductApiManager {
     override suspend fun loadProducts(): List<Product> =
         mutableListOf<ProductDTO>().apply {
             repeat(50) { num ->

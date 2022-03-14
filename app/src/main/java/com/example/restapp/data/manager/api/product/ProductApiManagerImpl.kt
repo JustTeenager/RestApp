@@ -1,7 +1,7 @@
-package com.example.restapp.data.manager
+package com.example.restapp.data.manager.api.product
 
 import android.util.Log
-import com.example.restapp.data.manager_contracts.ApiManager
+import com.example.restapp.data.manager_contracts.ProductApiManager
 import com.example.restapp.data.mapper.FromDtoToProductMapper
 import com.example.restapp.data.mapper.FromProductToDtoMapper
 import com.example.restapp.data.model.Cart
@@ -17,11 +17,11 @@ import io.ktor.http.*
 import kotlinx.serialization.json.Json
 import javax.inject.Inject
 
-class ApiManagerImpl @Inject constructor(
+class ProductApiManagerImpl @Inject constructor(
     private val client: HttpClient,
     private val dtoToProductMapper: FromDtoToProductMapper,
     private val productToDtoMapper: FromProductToDtoMapper
-) : ApiManager {
+) : ProductApiManager {
 
     override suspend fun loadProducts(): List<Product> {
         return client.get<List<ProductDTO>>("/products/?format=json")

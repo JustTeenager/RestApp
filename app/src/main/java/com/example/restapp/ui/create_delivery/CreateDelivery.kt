@@ -17,7 +17,6 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import com.example.restapp.di.navigation.NavigationFactory
-import com.example.restapp.di.navigation.NavigationFactoryType
 import com.example.restapp.di.navigation.NavigationScreenFactory
 import com.example.restapp.ui.create_delivery.footer_bottom_sheet.FooterBottomSheet
 import com.example.restapp.ui.product_catalog.products_list.ProductsList
@@ -62,8 +61,8 @@ class DeliveryCreateNavigationFactory @Inject constructor() : NavigationScreenFa
     companion object Companion :
         NavigationFactory.NavigationFactoryCompanion
 
-    override val factoryType: List<NavigationFactoryType>
-        get() = listOf(NavigationFactoryType.Restaurant)
+    override val factoryType: List<NavigationFactory.NavigationFactoryType>
+        get() = listOf(NavigationFactory.NavigationFactoryType.Restaurant)
 
     override fun create(builder: NavGraphBuilder, navGraph: NavHostController) {
         builder.composable(

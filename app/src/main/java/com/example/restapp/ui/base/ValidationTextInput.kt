@@ -1,6 +1,5 @@
-package com.example.restapp.ui.create_delivery.footer_bottom_sheet
+package com.example.restapp.ui.base
 
-import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.MaterialTheme
@@ -9,17 +8,16 @@ import androidx.compose.material.TextField
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.stringResource
 
 @Composable
 fun ValidationTextInput(
     modifier: Modifier,
-    initialField: String,
+    initialField: String? = null,
     onValueChanged: (String) -> Unit = { },
-    checkIfError: (String) -> Boolean = { false },
-    @StringRes labelText: Int,
-    @StringRes placeHolderText: Int,
-    @StringRes errorText: Int
+    checkIfError: (String?) -> Boolean = { false },
+    labelText: String? = null,
+    placeHolderText: String? = null,
+    errorText: String
 ) {
 
     var field by remember {
@@ -31,18 +29,18 @@ fun ValidationTextInput(
     ) {
         TextField(
             modifier = Modifier.fillMaxWidth(),
-            value = field,
+            value = field ?: "",
             onValueChange = {
                 field = it
                 onValueChanged(it)
             },
-            placeholder = { Text(text = stringResource(placeHolderText)) },
-            label = { Text(text = stringResource(labelText)) },
+            placeholder = placeHolderText?.let { { Text(text = placeHolderText) } },
+            label = labelText?.let { { Text(text = labelText) } },
             isError = checkIfError(field),
         )
         if (checkIfError(field)) {
             Text(
-                text = stringResource(errorText),
+                text = errorText,
                 color = Color.Red,
                 style = MaterialTheme.typography.body2
             )

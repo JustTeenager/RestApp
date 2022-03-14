@@ -18,11 +18,11 @@ interface NavigationFactory {
         builder: NavGraphBuilder,
         navGraph: NavHostController
     )
-}
 
-enum class NavigationFactoryType {
-    Login,
-    Restaurant
+    enum class NavigationFactoryType {
+        Login,
+        Restaurant
+    }
 }
 
 interface NavigationScreenFactory : NavigationFactory
