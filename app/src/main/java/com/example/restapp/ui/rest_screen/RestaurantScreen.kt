@@ -1,5 +1,6 @@
 package com.example.restapp.ui.rest_screen
 
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -9,7 +10,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.restapp.di.navigation.NavigationFactory
-import com.example.restapp.di.navigation.NavigationFactoryType
 import com.example.restapp.di.navigation.NavigationHostFactory
 import com.example.restapp.di.navigation.NavigationScreenFactory
 import com.example.restapp.ui.filter
@@ -49,15 +49,16 @@ class RestaurantScreenFactory @Inject constructor(
 
     companion object Companion : NavigationFactory.NavigationFactoryCompanion
 
-    override val factoryType: List<NavigationFactoryType>
-        get() = listOf(NavigationFactoryType.Login)
+    override val factoryType: List<NavigationFactory.NavigationFactoryType>
+        get() = listOf(NavigationFactory.NavigationFactoryType.Login)
 
     override fun create(builder: NavGraphBuilder, navGraph: NavHostController) {
         builder.composable(route = route) {
             RestaurantScreen(
-                modifier = Modifier,
+                modifier = Modifier
+                    .navigationBarsPadding(),
                 navigationFactoryList = navigationFactorySet
-                    .filter(NavigationFactoryType.Restaurant)
+                    .filter(NavigationFactory.NavigationFactoryType.Restaurant)
             )
         }
     }

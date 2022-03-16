@@ -1,12 +1,11 @@
 package com.example.restapp.data.repository
 
 import android.util.Log
-import com.example.restapp.data.manager.StorageManager
-import com.example.restapp.data.manager_contracts.ApiManager
+import com.example.restapp.data.manager_contracts.ProductApiManager
+import com.example.restapp.data.manager_contracts.StorageManager
 import com.example.restapp.data.model.Cart
 import com.example.restapp.domain.repository.BuyCartRepository
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.zip
 import javax.inject.Inject
@@ -14,13 +13,13 @@ import javax.inject.Named
 
 class BuyCartRepositoryImpl @Inject constructor(
     private val storageManager: StorageManager,
-    @Named("Api") apiManager: ApiManager,
-    @Named("Mock") mockApiManager: ApiManager,
+    @Named("Api") productApiManager: ProductApiManager,
+    @Named("Mock") mockProductApiManager: ProductApiManager,
 ) : BuyCartRepository {
 
     private val isMockUsing = true
 
-    private val manager = if (isMockUsing) mockApiManager else apiManager
+    private val manager = if (isMockUsing) mockProductApiManager else productApiManager
 
     override fun getProductsCart(): Flow<Cart?> {
         Log.d("tut_BuyCartRepo", "gettingProductsCart")
@@ -28,7 +27,7 @@ class BuyCartRepositoryImpl @Inject constructor(
             .combine(storageManager.productsInCart) { address, productInfo ->
                 productInfo to address
             }
-            .zip(storageManager.totalPrice.asStateFlow()) { productInfoWithAddress, price ->
+            .zip(storageManager.totalPrice) { productInfoWithAddress, price ->
                 Cart(
                     productList = productInfoWithAddress.first,
                     totalPrice = price,
@@ -37,7 +36,7 @@ class BuyCartRepositoryImpl @Inject constructor(
             }
     }
 
-    override fun getProductsCount(): Flow<Int> = storageManager.productsTotalCount.asStateFlow()
+    override fun getProductsCount(): Flow<Int> = storageManager.productsTotalCount
 
     override fun getCartAddress(): String = storageManager.cartAddress.value
 

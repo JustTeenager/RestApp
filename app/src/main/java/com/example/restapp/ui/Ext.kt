@@ -1,11 +1,14 @@
 package com.example.restapp.ui
 
+import android.content.Context
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
 import com.example.restapp.data.mapper.FromDtoToProductMapper
 import com.example.restapp.data.mapper.FromProductToDtoMapper
 import com.example.restapp.data.model.Cart
 import com.example.restapp.data.model.Product
 import com.example.restapp.di.navigation.NavigationFactory
-import com.example.restapp.di.navigation.NavigationFactoryType
 import com.example.restapp.domain.dto.CartDTO
 import com.example.restapp.domain.dto.ProductDTO
 
@@ -37,10 +40,12 @@ fun Cart.toDTOCart(mapper: FromProductToDtoMapper): CartDTO = CartDTO(
     deliveryState?.code
 )
 
-fun Set<NavigationFactory>.filter(vararg filters: NavigationFactoryType): List<NavigationFactory> {
+fun Set<NavigationFactory>.filter(vararg filters: NavigationFactory.NavigationFactoryType): List<NavigationFactory> {
     val rezList = mutableListOf<NavigationFactory>()
     filters.forEach { type ->
         rezList.addAll(this.filter { it.factoryType.contains(type) })
     }
     return rezList.toList()
 }
+
+val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "Settings")

@@ -6,6 +6,15 @@ import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
+import com.example.restapp.R
+
+val customFonts = FontFamily(
+    Font(R.font.alex_brush_regular, FontWeight.Medium, style = FontStyle.Italic),
+)
 
 private val DarkColorPalette = darkColors(
     primary = Purple200,

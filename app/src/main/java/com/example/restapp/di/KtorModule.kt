@@ -1,10 +1,6 @@
 package com.example.restapp.di
 
 import android.util.Log
-import com.example.restapp.data.manager.ApiManagerImpl
-import com.example.restapp.data.manager.MockApiManagerImpl
-import com.example.restapp.data.manager_contracts.ApiManager
-import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,12 +14,11 @@ import io.ktor.client.features.logging.*
 import io.ktor.client.features.observer.*
 import io.ktor.client.request.*
 import io.ktor.http.*
-import javax.inject.Named
 import kotlinx.serialization.json.Json as KotlinJson
 
 @Module
 @InstallIn(ViewModelComponent::class)
-class ApiModule {
+class KtorModule {
 
     @Provides
     fun provideKtorClient(): HttpClient = HttpClient(Android) {
@@ -53,18 +48,4 @@ class ApiModule {
             }
         }
     }
-}
-
-@Module
-@InstallIn(ViewModelComponent::class)
-abstract class ApiBinding {
-
-    @Binds
-    @Named("Mock")
-    abstract fun bindMockApiManager(manager: MockApiManagerImpl): ApiManager
-
-    @Binds
-    @Named("Api")
-    abstract fun bindApiManager(manager: ApiManagerImpl): ApiManager
-
 }

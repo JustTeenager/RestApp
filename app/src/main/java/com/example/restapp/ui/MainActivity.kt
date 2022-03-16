@@ -7,7 +7,6 @@ import androidx.compose.material.Surface
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import com.example.restapp.di.navigation.NavigationFactory
-import com.example.restapp.di.navigation.NavigationFactoryType
 import com.example.restapp.di.navigation.NavigationHostFactory
 import com.example.restapp.di.navigation.NavigationScreenFactory
 import com.example.restapp.ui.rest_screen.nav_bar.NavItem
@@ -38,11 +37,11 @@ class MainActivity : ComponentActivity() {
                         mutableSetOf<NavigationFactory>().apply {
                             addAll(
                                 navigationScreenFactorySet
-                                    .filter(NavigationFactoryType.Login)
+                                    .filter(NavigationFactory.NavigationFactoryType.Login)
                             )
                             addAll(
                                 navigationHostFactorySet
-                                    .filter(NavigationFactoryType.Login)
+                                    .filter(NavigationFactory.NavigationFactoryType.Login)
                             )
                         }.forEach { it.create(this, navController) }
                     }

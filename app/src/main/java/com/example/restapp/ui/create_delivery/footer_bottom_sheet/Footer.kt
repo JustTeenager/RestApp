@@ -17,6 +17,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.restapp.R
 import com.example.restapp.data.model.Cart
+import com.example.restapp.ui.base.ValidationTextInput
 import com.example.restapp.ui.theme.spacing
 
 @Composable
@@ -35,10 +36,10 @@ fun Footer(
                 .fillMaxWidth()
                 .wrapContentHeight(),
             initialField = cart.address,
-            checkIfError = { it.isEmpty() },
-            placeHolderText = R.string.add_address_label,
-            labelText = R.string.add_address_label,
-            errorText = R.string.addr_error_text,
+            checkIfError = { it?.isEmpty() ?: false },
+            placeHolderText = stringResource(R.string.add_address_label),
+            labelText = stringResource(R.string.add_address_label),
+            errorText = stringResource(R.string.addr_error_text),
             onValueChanged = { viewModel.obtainEvent(FooterViewModel.Event.OnAddressChanged(it)) }
         )
 

@@ -11,18 +11,18 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class StorageManager @Inject constructor() : StorageManager {
+class StorageManagerImpl @Inject constructor() : StorageManager {
 
     private val _productsInCart =
         MutableStateFlow(listOf<Pair<Int, Product>>())
 
-    val productsInCart
+    override val productsInCart
         get() = _productsInCart.asStateFlow()
 
-    val productsTotalCount = MutableStateFlow(0)
-    val totalPrice = MutableStateFlow(0)
+    override val productsTotalCount = MutableStateFlow(0)
+    override val totalPrice = MutableStateFlow(0)
 
-    val cartAddress = MutableStateFlow("")
+    override val cartAddress = MutableStateFlow("")
 
     override fun addProductToCart(product: Product) {
         val pairNeeded = _productsInCart.value.find { it.second == product }
