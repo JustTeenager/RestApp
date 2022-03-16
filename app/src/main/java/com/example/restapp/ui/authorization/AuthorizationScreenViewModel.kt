@@ -28,7 +28,9 @@ class AuthorizationScreenViewModel @Inject constructor(
             is OnLoginPressed -> {
                 pressLogin(event.login, event.password)
             }
-            is Event.OnRegisterPressed -> {}
+            is Event.OnRegisterPressed -> {
+                pressRegistration()
+            }
         }
     }
 
@@ -41,10 +43,17 @@ class AuthorizationScreenViewModel @Inject constructor(
         }
     }
 
+    private fun pressRegistration() = viewModelScope.launch {
+        with(_authorizationStateFlow) {
+            emit(AuthorizationState.Registration)
+        }
+    }
+
     sealed class AuthorizationState {
         object NoAuthorization : AuthorizationState()
         object Authorized : AuthorizationState()
         object AuthorizedError : AuthorizationState()
+        object Registration : AuthorizationState()
     }
 
     sealed class Event : BaseEvent() {

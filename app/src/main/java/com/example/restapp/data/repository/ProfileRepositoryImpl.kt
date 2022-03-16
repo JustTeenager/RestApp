@@ -1,6 +1,6 @@
 package com.example.restapp.data.repository
 
-import com.example.restapp.data.manager.DataStoreManager
+import com.example.restapp.data.manager_contracts.DataStoreManager
 import com.example.restapp.data.manager_contracts.ProfileApiManager
 import com.example.restapp.domain.repository.ProfileRepository
 import com.example.restapp.ui.runRequest
@@ -21,9 +21,5 @@ class ProfileRepositoryImpl @Inject constructor(
     override suspend fun login(login: String, password: String): Result<String?> {
         return runRequest { manager.login(login, password) }
             .onSuccess { dataStoreManager.addProfileToken(it) }
-    }
-
-    override suspend fun register() {
-        return manager.register()
     }
 }

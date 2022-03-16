@@ -64,6 +64,10 @@ fun AuthorizationScreen(
                 )
             }
 
+            is Registration -> {
+                navController.navigate(NavItem.Registration.route)
+            }
+
             is NoAuthorization -> {}
         }
     }

@@ -4,6 +4,4 @@ interface ProfileRepository {
 
     suspend fun login(login: String, password: String): Result<String?>
 
-    suspend fun register()
-
 }

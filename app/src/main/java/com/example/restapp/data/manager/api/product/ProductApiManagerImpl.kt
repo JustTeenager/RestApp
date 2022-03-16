@@ -1,7 +1,7 @@
 package com.example.restapp.data.manager.api.product
 
 import android.util.Log
-import com.example.restapp.data.manager.DataStoreManager
+import com.example.restapp.data.manager_contracts.DataStoreManager
 import com.example.restapp.data.manager_contracts.ProductApiManager
 import com.example.restapp.data.mapper.FromDtoToProductMapper
 import com.example.restapp.data.mapper.FromProductToDtoMapper

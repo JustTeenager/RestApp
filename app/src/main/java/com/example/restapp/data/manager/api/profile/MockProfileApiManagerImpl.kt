@@ -5,8 +5,8 @@ import javax.inject.Inject
 
 class MockProfileApiManagerImpl @Inject constructor() : ProfileApiManager {
     override suspend fun login(login: String, password: String): String {
-        //return "$login $password"
-        throw Exception("")
+        return "$login $password"
+        //throw Exception("")
     }
 
     override suspend fun register() {

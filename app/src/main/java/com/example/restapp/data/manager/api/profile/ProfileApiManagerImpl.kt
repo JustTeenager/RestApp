@@ -1,6 +1,6 @@
 package com.example.restapp.data.manager.api.profile
 
-import com.example.restapp.data.manager.DataStoreManager
+import com.example.restapp.data.manager_contracts.DataStoreManager
 import com.example.restapp.data.manager_contracts.ProfileApiManager
 import io.ktor.client.*
 import io.ktor.client.request.*
