@@ -23,4 +23,7 @@
     <string name="authorization_login_error">Неверный логин</string>
     <string name="authorization_password_placeholder">Введите пароль</string>
     <string name="authorization_password_error">Неверный пароль</string>
+    <string name="restaurant_name">Evane\'</string>
+    <string name="login_btn_title">Войти</string>
+    <string name="register_btn_title">Регистрация</string>
 </resources>

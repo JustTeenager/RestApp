@@ -1,13 +1,16 @@
 package com.example.restapp.data.repository
 
+import com.example.restapp.data.manager.DataStoreManager
 import com.example.restapp.data.manager_contracts.ProfileApiManager
 import com.example.restapp.domain.repository.ProfileRepository
+import com.example.restapp.ui.runRequest
 import javax.inject.Inject
 import javax.inject.Named
 
 class ProfileRepositoryImpl @Inject constructor(
     @Named("Api") profileApiManager: ProfileApiManager,
-    @Named("Mock") mockProfileApiManager: ProfileApiManager
+    @Named("Mock") mockProfileApiManager: ProfileApiManager,
+    private val dataStoreManager: DataStoreManager
 ) : ProfileRepository {
 
     private val isMockUsing = true
@@ -15,11 +18,12 @@ class ProfileRepositoryImpl @Inject constructor(
     private val manager: ProfileApiManager =
         if (isMockUsing) mockProfileApiManager else profileApiManager
 
-    override fun login(login: String, password: String): Result<String?> {
-        TODO("Not yet implemented")
+    override suspend fun login(login: String, password: String): Result<String?> {
+        return runRequest { manager.login(login, password) }
+            .onSuccess { dataStoreManager.addProfileToken(it) }
     }
 
-    override fun register() {
-        TODO("Not yet implemented")
+    override suspend fun register() {
+        return manager.register()
     }
 }

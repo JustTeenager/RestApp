@@ -1,6 +1,7 @@
 package com.example.restapp.data.manager.api.product
 
 import android.util.Log
+import com.example.restapp.data.manager.DataStoreManager
 import com.example.restapp.data.manager_contracts.ProductApiManager
 import com.example.restapp.data.mapper.FromDtoToProductMapper
 import com.example.restapp.data.mapper.FromProductToDtoMapper
@@ -19,6 +20,7 @@ import javax.inject.Inject
 
 class ProductApiManagerImpl @Inject constructor(
     private val client: HttpClient,
+    private val dataStoreManager: DataStoreManager,
     private val dtoToProductMapper: FromDtoToProductMapper,
     private val productToDtoMapper: FromProductToDtoMapper
 ) : ProductApiManager {
@@ -33,6 +35,7 @@ class ProductApiManagerImpl @Inject constructor(
         client.post<HttpResponse> {
             url("/carts/")
             contentType(ContentType.Application.Json)
+            header(HttpHeaders.Authorization, dataStoreManager.getProfileToken())
             body = cart.toDTOCart(productToDtoMapper)
         }
     }

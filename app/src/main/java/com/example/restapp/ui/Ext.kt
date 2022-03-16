@@ -1,5 +1,9 @@
 package com.example.restapp.ui
 
+import android.content.Context
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
 import com.example.restapp.data.mapper.FromDtoToProductMapper
 import com.example.restapp.data.mapper.FromProductToDtoMapper
 import com.example.restapp.data.model.Cart
@@ -43,3 +47,5 @@ fun Set<NavigationFactory>.filter(vararg filters: NavigationFactory.NavigationFa
     }
     return rezList.toList()
 }
+
+val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "Settings")

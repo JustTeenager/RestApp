@@ -8,6 +8,7 @@ import androidx.compose.material.TextField
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.input.VisualTransformation
 
 @Composable
 fun ValidationTextInput(
@@ -17,7 +18,8 @@ fun ValidationTextInput(
     checkIfError: (String?) -> Boolean = { false },
     labelText: String? = null,
     placeHolderText: String? = null,
-    errorText: String
+    errorText: String,
+    transformation: VisualTransformation = VisualTransformation.None
 ) {
 
     var field by remember {
@@ -37,6 +39,7 @@ fun ValidationTextInput(
             placeholder = placeHolderText?.let { { Text(text = placeHolderText) } },
             label = labelText?.let { { Text(text = labelText) } },
             isError = checkIfError(field),
+            visualTransformation = transformation
         )
         if (checkIfError(field)) {
             Text(
