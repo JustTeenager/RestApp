@@ -1,6 +1,6 @@
 package com.example.restapp.ui.rest_screen
 
-import androidx.compose.foundation.layout.navigationBarsPadding
+import android.util.Log
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -23,6 +23,7 @@ fun RestaurantScreen(
     navigationFactoryList: List<NavigationFactory>
 ) {
     val controller = rememberNavController()
+    Log.d("tut_rest_contr", controller.backQueue.map { it.destination.route.toString() }.toString())
 
     Scaffold(
         modifier = modifier,
@@ -55,8 +56,7 @@ class RestaurantScreenFactory @Inject constructor(
     override fun create(builder: NavGraphBuilder, navGraph: NavHostController) {
         builder.composable(route = route) {
             RestaurantScreen(
-                modifier = Modifier
-                    .navigationBarsPadding(),
+                modifier = Modifier,
                 navigationFactoryList = navigationFactorySet
                     .filter(NavigationFactory.NavigationFactoryType.Restaurant)
             )

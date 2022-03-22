@@ -20,6 +20,10 @@ class ProfileRepositoryImpl @Inject constructor(
 
     override suspend fun login(login: String, password: String): Result<String?> {
         return runRequest { manager.login(login, password) }
-            .onSuccess { dataStoreManager.addProfileToken(it) }
+            .onSuccess {
+                dataStoreManager.addProfileToken(it)
+                dataStoreManager.addProfileLogin(login)
+                dataStoreManager.addProfilePassword(password)
+            }
     }
 }

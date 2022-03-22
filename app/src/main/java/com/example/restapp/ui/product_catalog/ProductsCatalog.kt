@@ -2,7 +2,6 @@ package com.example.restapp.ui.product_catalog
 
 import android.util.Log
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -33,7 +32,8 @@ fun ProductCatalog(
         onRefresh = {
             Log.d("tut_product_catalog", "event refresh initiated")
             productsCatalogViewModel.obtainEvent(ProductsCatalogViewModel.Event.OnLoadingStarted)
-        }
+        },
+        swipeEnabled = loadingState.value != LOAD_IN_PROGRESS
     ) {
         when (loadingState.value) {
             LOAD_IN_PROGRESS -> {
@@ -42,6 +42,7 @@ fun ProductCatalog(
                     initialProductsList = productsList.value,
                     isShimmerNeeded = true
                 )
+                isRefreshNeeded = true
             }
             LOAD_SUCCEED -> {
                 ProductsListWithPeriphery(
@@ -75,7 +76,6 @@ class ProductsCatalogNavigationFactory @Inject constructor() : NavigationScreenF
             ProductCatalog(
                 modifier = Modifier
                     .fillMaxSize()
-                    .navigationBarsPadding()
             )
         }
     }
