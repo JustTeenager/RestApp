@@ -2,6 +2,7 @@ package com.example.restapp.data.manager.api.profile
 
 import com.example.restapp.data.manager_contracts.DataStoreManager
 import com.example.restapp.data.manager_contracts.ProfileApiManager
+import com.example.restapp.domain.dto.LoginDTO
 import io.ktor.client.*
 import io.ktor.client.request.*
 import io.ktor.http.*
@@ -16,14 +17,10 @@ class ProfileApiManagerImpl @Inject constructor(
         return client.get {
             url("")
             contentType(ContentType.Application.Json)
-            header(
-                HttpHeaders.Authorization,
-                dataStoreManager.getProfileToken()
+            body = LoginDTO(
+                login = login,
+                password = password
             )
-            body = Parameters.build {
-                append("login", login)
-                append("password", password)
-            }
         }
     }
 
