@@ -17,6 +17,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
@@ -34,7 +35,7 @@ import javax.inject.Inject
 
 @Composable
 fun AuthorizationScreen(
-    navController: NavHostController,
+    navController: NavController,
     viewModel: AuthorizationScreenViewModel = hiltViewModel()
 ) {
 
@@ -54,7 +55,11 @@ fun AuthorizationScreen(
         when (state.value) {
             is Authorized -> {
                 navController.navigate(NavItem.Restaurant.route) {
-
+                    launchSingleTop = true
+                    popUpTo(navController.graph.startDestinationId) {
+                        inclusive = true
+                    }
+                    navController.clearBackStack(NavItem.Authorization.route)
                 }
             }
             is AuthorizedError -> {
