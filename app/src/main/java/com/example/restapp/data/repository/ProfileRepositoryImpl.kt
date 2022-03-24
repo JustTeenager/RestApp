@@ -1,5 +1,6 @@
 package com.example.restapp.data.repository
 
+import com.example.restapp.BuildConfig
 import com.example.restapp.data.manager_contracts.DataStoreManager
 import com.example.restapp.data.manager_contracts.ProfileApiManager
 import com.example.restapp.domain.repository.ProfileRepository
@@ -13,10 +14,8 @@ class ProfileRepositoryImpl @Inject constructor(
     private val dataStoreManager: DataStoreManager
 ) : ProfileRepository {
 
-    private val isMockUsing = true
-
     private val manager: ProfileApiManager =
-        if (isMockUsing) mockProfileApiManager else profileApiManager
+        if (BuildConfig.IS_MOCK_USING) mockProfileApiManager else profileApiManager
 
     override suspend fun login(login: String, password: String): Result<String?> {
         return runRequest { manager.login(login, password) }

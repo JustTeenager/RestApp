@@ -1,6 +1,7 @@
 package com.example.restapp.data.repository
 
 import android.util.Log
+import com.example.restapp.BuildConfig
 import com.example.restapp.data.manager_contracts.ProductApiManager
 import com.example.restapp.data.manager_contracts.StorageManager
 import com.example.restapp.data.model.Cart
@@ -17,9 +18,8 @@ class BuyCartRepositoryImpl @Inject constructor(
     @Named("Mock") mockProductApiManager: ProductApiManager,
 ) : BuyCartRepository {
 
-    private val isMockUsing = true
-
-    private val manager = if (isMockUsing) mockProductApiManager else productApiManager
+    private val manager =
+        if (BuildConfig.IS_MOCK_USING) mockProductApiManager else productApiManager
 
     override fun getProductsCart(): Flow<Cart?> {
         Log.d("tut_BuyCartRepo", "gettingProductsCart")

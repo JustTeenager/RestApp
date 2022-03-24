@@ -1,6 +1,5 @@
 package com.example.restapp.data.manager.api.profile
 
-import com.example.restapp.data.manager_contracts.DataStoreManager
 import com.example.restapp.data.manager_contracts.ProfileApiManager
 import com.example.restapp.domain.dto.LoginDTO
 import io.ktor.client.*
@@ -10,7 +9,6 @@ import javax.inject.Inject
 
 class ProfileApiManagerImpl @Inject constructor(
     private val client: HttpClient,
-    private val dataStoreManager: DataStoreManager
 ) : ProfileApiManager {
 
     override suspend fun login(login: String, password: String): String {

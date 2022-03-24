@@ -1,5 +1,6 @@
 package com.example.restapp.data.repository
 
+import com.example.restapp.BuildConfig
 import com.example.restapp.data.manager_contracts.ProductApiManager
 import com.example.restapp.data.model.Product
 import com.example.restapp.domain.repository.LoadProductsRepository
@@ -12,10 +13,8 @@ class LoadProductsRepositoryImpl @Inject constructor(
     @Named("Api") productApiManager: ProductApiManager
 ) : LoadProductsRepository {
 
-    private val isMockUsing = true
-
     private val manager: ProductApiManager =
-        if (isMockUsing) mockProductApiManager else productApiManager
+        if (BuildConfig.IS_MOCK_USING) mockProductApiManager else productApiManager
 
     override suspend fun loadProducts(): Result<List<Product>> =
         runRequest {
