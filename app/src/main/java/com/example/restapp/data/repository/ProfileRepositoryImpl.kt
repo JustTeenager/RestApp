@@ -3,6 +3,7 @@ package com.example.restapp.data.repository
 import com.example.restapp.BuildConfig
 import com.example.restapp.data.manager_contracts.DataStoreManager
 import com.example.restapp.data.manager_contracts.ProfileApiManager
+import com.example.restapp.domain.dto.TokenDTO
 import com.example.restapp.domain.repository.ProfileRepository
 import com.example.restapp.ui.runRequest
 import javax.inject.Inject
@@ -17,12 +18,11 @@ class ProfileRepositoryImpl @Inject constructor(
     private val manager: ProfileApiManager =
         if (BuildConfig.IS_MOCK_USING) mockProfileApiManager else profileApiManager
 
-    override suspend fun login(login: String, password: String): Result<String?> {
+    override suspend fun login(login: String, password: String): Result<TokenDTO?> {
         return runRequest { manager.login(login, password) }
             .onSuccess {
-                dataStoreManager.addProfileToken(it)
-                dataStoreManager.addProfileLogin(login)
-                dataStoreManager.addProfilePassword(password)
+                dataStoreManager.addProfileToken(it.access)
+                dataStoreManager.addRefreshToken(it.refresh)
             }
     }
 }

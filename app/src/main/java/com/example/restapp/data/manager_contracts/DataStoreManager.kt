@@ -12,11 +12,7 @@ interface DataStoreManager {
 
     suspend fun getProfileToken(): String?
 
-    suspend fun addProfileLogin(login: String)
+    suspend fun addRefreshToken(token: String)
 
-    suspend fun getProfileLogin(): String?
-
-    suspend fun addProfilePassword(password: String)
-
-    suspend fun getProfilePassword(): String?
+    suspend fun getRefreshToken(): String?
 }

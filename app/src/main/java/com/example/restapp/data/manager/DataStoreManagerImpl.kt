@@ -34,26 +34,12 @@ class DataStoreManagerImpl @Inject constructor(
             it[dataStoreTokenKey]
         }.firstOrNull()
 
-    override suspend fun addProfileLogin(login: String) {
-        store.edit {
-            it[dataStoreLoginKey] = login
-        }
+    override suspend fun addRefreshToken(token: String) {
+        TODO("Not yet implemented")
     }
 
-    override suspend fun getProfileLogin(): String? =
-        store.data.map {
-            it[dataStoreLoginKey]
-        }.firstOrNull()
-
-    override suspend fun addProfilePassword(password: String) {
-        store.data.map {
-            it[dataStorePasswordKey]
-        }.firstOrNull()
+    override suspend fun getRefreshToken(): String? {
+        TODO("Not yet implemented")
     }
-
-    override suspend fun getProfilePassword(): String? =
-        store.data.map {
-            it[dataStorePasswordKey]
-        }.firstOrNull()
 
 }

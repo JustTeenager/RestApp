@@ -2,7 +2,6 @@ package com.example.restapp.di
 
 import android.util.Log
 import com.example.restapp.data.manager_contracts.DataStoreManager
-import com.example.restapp.domain.dto.LoginDTO
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -30,7 +29,7 @@ class KtorModule {
     ): HttpClient = HttpClient(Android) {
 
         defaultRequest {
-            host = "192.168.1.105:8000/api"
+            host = "192.168.43.2:8000/api"
             url { protocol = URLProtocol.HTTP }
         }
 
@@ -60,20 +59,17 @@ class KtorModule {
     }.apply {
         responsePipeline.intercept(HttpResponsePipeline.Receive) {
 
-            Log.d("tut", "intercepting")
+            Log.d("tut_interceptor", "intercepting")
 
             if (context.response.status == HttpStatusCode.Unauthorized) {
-                val login = dataStoreManager.getProfileLogin()
-                val password = dataStoreManager.getProfilePassword()
-                if (login != null && password != null) {
+                Log.d("tut_interceptor", "intercept_unauthored")
+                val refresh = dataStoreManager.getRefreshToken()
+                refresh?.let { refreshToken ->
                     context.client?.let {
-                        val token = it.get<String> {
-                            url("")
+                        val token = it.post<String> {
+                            url("/auth/jwt/refresh/")
                             contentType(ContentType.Application.Json)
-                            body = LoginDTO(
-                                login = login,
-                                password = password
-                            )
+                            body = refreshToken
                         }
                         val newRequest = request<HttpResponse> {
                             takeFrom(context.request)
@@ -89,9 +85,6 @@ class KtorModule {
                         )
                         dataStoreManager.addProfileToken(token)
                     }
-                } else {
-                    //TODO ебала какая-то
-                    throw Exception("у нас почему-то нет логина/пароля")
                 }
             }
         }
