@@ -1,20 +1,18 @@
 package com.example.restapp.ui.authorization
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.graphics.BlendMode
-import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.graphics.Shadow
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
@@ -25,12 +23,14 @@ import com.example.restapp.R
 import com.example.restapp.di.navigation.NavigationFactory
 import com.example.restapp.di.navigation.NavigationScreenFactory
 import com.example.restapp.ui.authorization.AuthorizationScreenViewModel.AuthorizationState.*
+import com.example.restapp.ui.base.GradientedTextButton
 import com.example.restapp.ui.base.ValidationTextInput
 import com.example.restapp.ui.rest_screen.nav_bar.NavItem
-import com.example.restapp.ui.theme.IceCream
-import com.example.restapp.ui.theme.Tomato
-import com.example.restapp.ui.theme.customFonts
+import com.example.restapp.ui.theme.BackgroundBlack
+import com.example.restapp.ui.theme.PrimaryOrange
+import com.example.restapp.ui.theme.roboto_light
 import com.example.restapp.ui.theme.spacing
+import com.example.restapp.ui.withGradient
 import javax.inject.Inject
 
 @Composable
@@ -51,6 +51,7 @@ fun AuthorizationScreen(
 
     val snackbarHostState = SnackbarHostState()
 
+    //TODO навесить экран загрузки
     LaunchedEffect(key1 = state.value) {
         when (state.value) {
             is Authorized -> {
@@ -59,7 +60,6 @@ fun AuthorizationScreen(
                     popUpTo(navController.graph.startDestinationId) {
                         inclusive = true
                     }
-                    navController.clearBackStack(NavItem.Authorization.route)
                 }
             }
             is AuthorizedError -> {
@@ -70,7 +70,9 @@ fun AuthorizationScreen(
             }
 
             is Registration -> {
-                navController.navigate(NavItem.Registration.route)
+                navController.navigate(NavItem.Registration.route) {
+                    launchSingleTop = true
+                }
             }
 
             is NoAuthorization -> {}
@@ -81,40 +83,38 @@ fun AuthorizationScreen(
         modifier = Modifier
             .fillMaxSize()
     ) {
-
-        Image(
+        Box(
             modifier = Modifier
-                .fillMaxSize(),
-            painter = painterResource(R.drawable.auth_img),
-            contentDescription = null,
-            colorFilter = ColorFilter.tint(
-                color = Tomato.copy(alpha = 0.75f),
-                blendMode = BlendMode.Multiply
-            ),
-            contentScale = ContentScale.Crop
-        )
+                .fillMaxSize()
+                .withGradient(
+                    Brush.verticalGradient(
+                        colorStops = arrayOf(
+                            0f to PrimaryOrange.copy(alpha = 0.4f),
+                            0.37f to BackgroundBlack
+                        ),
+                    )
+                )
+        ) {
+            Image(
+                modifier = Modifier
+                    .wrapContentSize(),
+                painter = painterResource(R.drawable.register_img),
+                contentDescription = null,
+                contentScale = ContentScale.FillWidth
+            )
+        }
+
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(MaterialTheme.spacing.medium),
-            verticalArrangement = Arrangement.Center,
+            verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
-            Text(
-                modifier = Modifier,
-                text = stringResource(R.string.restaurant_name),
-                style = TextStyle(
-                    color = IceCream,
-                    fontFamily = customFonts,
-                    fontSize = 96.sp,
-                    shadow = Shadow(
-                        color = IceCream,
-                        offset = Offset(1f, 4f),
-                        blurRadius = 4f
-                    )
-                )
-            )
+            WelcomeText()
+
+            Spacer(modifier = Modifier.height(16.dp))
 
             ValidationTextInput(
                 modifier = Modifier
@@ -126,7 +126,7 @@ fun AuthorizationScreen(
                 onValueChanged = { login = it },
             )
 
-            Spacer(modifier = Modifier.height(MaterialTheme.spacing.large))
+            Spacer(modifier = Modifier.height(MaterialTheme.spacing.medium))
 
             ValidationTextInput(
                 modifier = Modifier
@@ -141,7 +141,7 @@ fun AuthorizationScreen(
 
             Spacer(modifier = Modifier.height(MaterialTheme.spacing.large))
 
-            Row(
+            Column(
                 modifier = Modifier
                     .fillMaxWidth()
                     .wrapContentHeight()
@@ -149,9 +149,17 @@ fun AuthorizationScreen(
                         start = MaterialTheme.spacing.large,
                         end = MaterialTheme.spacing.large
                     ),
-                horizontalArrangement = Arrangement.SpaceEvenly
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Button(
+
+                GradientedTextButton(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(
+                            top = MaterialTheme.spacing.small,
+                            bottom = MaterialTheme.spacing.small
+                        ),
+                    text = stringResource(R.string.login_btn_title),
                     onClick = {
                         viewModel.obtainEvent(
                             AuthorizationScreenViewModel.Event.OnLoginPressed(
@@ -160,19 +168,22 @@ fun AuthorizationScreen(
                             )
                         )
                     }
-                ) {
-                    Text(text = stringResource(R.string.login_btn_title))
-                }
+                )
 
-                Button(
-                    onClick = {
-                        viewModel.obtainEvent(
-                            AuthorizationScreenViewModel.Event.OnRegisterPressed
-                        )
-                    }
-                ) {
-                    Text(text = stringResource(R.string.register_btn_title))
-                }
+                Spacer(modifier = Modifier.height(12.dp))
+
+                Text(
+                    modifier = Modifier
+                        .clickable {
+                            viewModel.obtainEvent(
+                                AuthorizationScreenViewModel.Event.OnRegisterPressed
+                            )
+                        },
+                    text = stringResource(R.string.register_btn_title),
+                    color = PrimaryOrange.copy(alpha = ContentAlpha.medium),
+                    fontFamily = roboto_light,
+                    fontSize = 15.sp
+                )
             }
         }
 

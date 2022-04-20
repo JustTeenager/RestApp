@@ -26,8 +26,11 @@ class ProductApiManagerImpl @Inject constructor(
 ) : ProductApiManager {
 
     override suspend fun loadProducts(): List<Product> {
-        return client.get<List<ProductDTO>>("/products/?format=json")
-            .toProductList(dtoToProductMapper)
+        return client.get<List<ProductDTO>> {
+            url("/products/?format=json")
+            contentType(ContentType.Application.Json)
+            header(HttpHeaders.Authorization, dataStoreManager.getProfileToken())
+        }.toProductList(dtoToProductMapper)
     }
 
     override suspend fun buyProductCart(cart: Cart) {

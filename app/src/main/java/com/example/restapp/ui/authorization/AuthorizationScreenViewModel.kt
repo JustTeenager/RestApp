@@ -46,6 +46,7 @@ class AuthorizationScreenViewModel @Inject constructor(
     private fun pressRegistration() = viewModelScope.launch {
         with(_authorizationStateFlow) {
             emit(AuthorizationState.Registration)
+            emit(AuthorizationState.NoAuthorization)
         }
     }
 
