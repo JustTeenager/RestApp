@@ -6,14 +6,23 @@ import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import com.example.restapp.R
 
-val customFonts = FontFamily(
-    Font(R.font.alex_brush_regular, FontWeight.Medium, style = FontStyle.Italic),
+val monplesir = FontFamily(
+    Font(R.font.monplesir, FontWeight.Medium, style = FontStyle.Italic),
+)
+
+val roboto_medium = FontFamily(
+    Font(R.font.roboto_medium, FontWeight.Medium, style = FontStyle.Italic),
+)
+
+val roboto_light = FontFamily(
+    Font(R.font.roboto_light, FontWeight.Medium, style = FontStyle.Italic),
 )
 
 private val DarkColorPalette = darkColors(
@@ -23,19 +32,15 @@ private val DarkColorPalette = darkColors(
 )
 
 private val LightColorPalette = lightColors(
-    primary = Tomato,
-    primaryVariant = Coral,
+    primary = PrimaryOrange,
+    primaryVariant = PrimaryOrange,
     secondary = Salmon,
-    background = Salmon,
-
-    /* Other default colors to override
-    background = Color.White,
+    background = BackgroundGrey,
     surface = Color.White,
     onPrimary = Color.White,
     onSecondary = Color.Black,
-    onBackground = Color.Black,
-    onSurface = Color.Black,
-    */
+    onBackground = PrimaryOrange,
+    onSurface = PrimaryOrange,
 )
 
 @Composable
@@ -43,11 +48,7 @@ fun RestaurantAppTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
-    val colors = if (darkTheme) {
-        DarkColorPalette
-    } else {
-        LightColorPalette
-    }
+    val colors = LightColorPalette
 
     CompositionLocalProvider(LocalSpacing provides Spacing()) {
         MaterialTheme(

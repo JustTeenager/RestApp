@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
+import androidx.compose.material.TextFieldDefaults
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -39,7 +40,10 @@ fun ValidationTextInput(
             placeholder = placeHolderText?.let { { Text(text = placeHolderText) } },
             label = labelText?.let { { Text(text = labelText) } },
             isError = checkIfError(field),
-            visualTransformation = transformation
+            visualTransformation = transformation,
+            colors = TextFieldDefaults.textFieldColors(
+                backgroundColor = Color.Transparent
+            )
         )
         if (checkIfError(field)) {
             Text(

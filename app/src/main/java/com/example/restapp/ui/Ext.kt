@@ -1,6 +1,9 @@
 package com.example.restapp.ui
 
 import android.content.Context
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawWithContent
+import androidx.compose.ui.graphics.Brush
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
@@ -27,6 +30,16 @@ fun Int.toProductType(): Product.ProductType {
             return it
     }
     throw Exception("Wrong Product type code")
+}
+
+fun Modifier.withGradient(brush: Brush, isBackground: Boolean = false) = drawWithContent {
+    if (isBackground) {
+        drawRect(brush)
+        drawContent()
+    } else {
+        drawContent()
+        drawRect(brush)
+    }
 }
 
 fun List<ProductDTO>.toProductList(mapper: FromDtoToProductMapper): List<Product> =

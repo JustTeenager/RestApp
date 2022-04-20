@@ -35,7 +35,6 @@ class DataStoreManagerImpl @Inject constructor(
         }.firstOrNull()
 
     override suspend fun addRefreshToken(token: String) {
-        TODO("Not yet implemented")
     }
 
     override suspend fun getRefreshToken(): String? {

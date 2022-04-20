@@ -5,11 +5,14 @@
       <map>
         <entry key="..\:/Users/alexe/.gradle/caches/transforms-3/fe52ef2c95b09262e3e220346bd6830b/transformed/core-splashscreen-1.0.0-beta01/res/layout/splash_screen_view.xml" value="0.1" />
         <entry key="..\:/Users/alexe/AppData/Local/Android/Sdk/platforms/android-31/data/res/layout/splash_screen_view.xml" value="0.1" />
+        <entry key="..\:/another/ReAndroid/RestFromGitlab/rest-app-frontend/app/src/main/res/drawable/baseline_help_outline_24.xml" value="0.1715" />
         <entry key="..\:/another/ReAndroid/RestFromGitlab/rest-app-frontend/app/src/main/res/drawable/ic_bottom_bar_delivery.xml" value="0.209" />
         <entry key="..\:/another/ReAndroid/RestFromGitlab/rest-app-frontend/app/src/main/res/drawable/ic_bottom_bar_delivery_create.xml" value="0.209" />
         <entry key="..\:/another/ReAndroid/RestFromGitlab/rest-app-frontend/app/src/main/res/drawable/ic_bottom_bar_delivery_list.xml" value="0.124" />
         <entry key="..\:/another/ReAndroid/RestFromGitlab/rest-app-frontend/app/src/main/res/drawable/ic_bottom_bar_product.xml" value="0.1" />
+        <entry key="..\:/another/ReAndroid/RestFromGitlab/rest-app-frontend/app/src/main/res/drawable/ic_details.xml" value="0.264" />
         <entry key="..\:/another/ReAndroid/RestFromGitlab/rest-app-frontend/app/src/main/res/drawable/ic_fail.xml" value="0.108" />
+        <entry key="..\:/another/ReAndroid/RestFromGitlab/rest-app-frontend/app/src/main/res/drawable/ic_loading.xml" value="0.1" />
         <entry key="..\:/another/ReAndroid/RestFromGitlab/rest-app-frontend/app/src/main/res/drawable/splash_screen.xml" value="0.123" />
         <entry key="..\:/another/ReAndroid/RestFromGitlab/rest-app-frontend/app/src/main/res/drawable/splash_screen_vector.xml" value="0.237" />
         <entry key="..\:/another/ReAndroid/RestFromGitlab/rest-app-frontend/app/src/main/res/layout/splash_screen.xml" value="0.25416666666666665" />
