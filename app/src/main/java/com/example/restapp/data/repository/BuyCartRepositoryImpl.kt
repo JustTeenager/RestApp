@@ -1,25 +1,20 @@
 package com.example.restapp.data.repository
 
 import android.util.Log
-import com.example.restapp.BuildConfig
 import com.example.restapp.data.manager_contracts.ProductApiManager
 import com.example.restapp.data.manager_contracts.StorageManager
 import com.example.restapp.data.model.Cart
 import com.example.restapp.domain.repository.BuyCartRepository
+import com.example.restapp.ui.runRequest
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.zip
 import javax.inject.Inject
-import javax.inject.Named
 
 class BuyCartRepositoryImpl @Inject constructor(
     private val storageManager: StorageManager,
-    @Named("Api") productApiManager: ProductApiManager,
-    @Named("Mock") mockProductApiManager: ProductApiManager,
+    private val productApiManager: ProductApiManager,
 ) : BuyCartRepository {
-
-    private val manager =
-        if (BuildConfig.IS_MOCK_USING) mockProductApiManager else productApiManager
 
     override fun getProductsCart(): Flow<Cart?> {
         Log.d("tut_BuyCartRepo", "gettingProductsCart")
@@ -45,6 +40,8 @@ class BuyCartRepositoryImpl @Inject constructor(
     }
 
     override suspend fun buyCart(cart: Cart) {
-        manager.buyProductCart(cart)
+        runRequest {
+            productApiManager.buyProductCart(cart)
+        }
     }
 }

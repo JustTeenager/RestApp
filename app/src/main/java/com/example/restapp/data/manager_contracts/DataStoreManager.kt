@@ -4,8 +4,6 @@ interface DataStoreManager {
 
     companion object {
         const val TOKEN_PREF_KEY = "authorization_pref_key"
-        const val LOGIN_PREF_KEY = "authorization_pref_key"
-        const val PASSWORD_PREF_KEY = "authorization_pref_key"
     }
 
     suspend fun addProfileToken(token: String)

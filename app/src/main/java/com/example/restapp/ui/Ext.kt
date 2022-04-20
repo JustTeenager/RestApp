@@ -1,6 +1,7 @@
 package com.example.restapp.ui
 
 import android.content.Context
+import android.util.Log
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.graphics.Brush
@@ -17,6 +18,7 @@ import com.example.restapp.domain.dto.ProductDTO
 
 suspend fun <T> runRequest(method: suspend () -> T): Result<T> {
     return try {
+        Log.d("tut", method.javaClass.name)
         Result.success(method())
     } catch (e: Exception) {
         e.printStackTrace()

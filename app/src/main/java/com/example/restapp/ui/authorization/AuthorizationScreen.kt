@@ -51,6 +51,7 @@ fun AuthorizationScreen(
 
     val snackbarHostState = SnackbarHostState()
 
+    //TODO навесить экран загрузки
     LaunchedEffect(key1 = state.value) {
         when (state.value) {
             is Authorized -> {
@@ -59,7 +60,6 @@ fun AuthorizationScreen(
                     popUpTo(navController.graph.startDestinationId) {
                         inclusive = true
                     }
-                    navController.clearBackStack(NavItem.Authorization.route)
                 }
             }
             is AuthorizedError -> {
@@ -70,7 +70,9 @@ fun AuthorizationScreen(
             }
 
             is Registration -> {
-                navController.navigate(NavItem.Registration.route)
+                navController.navigate(NavItem.Registration.route) {
+                    launchSingleTop = true
+                }
             }
 
             is NoAuthorization -> {}

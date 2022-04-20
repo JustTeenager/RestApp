@@ -4,8 +4,6 @@ import android.content.Context
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import com.example.restapp.data.manager_contracts.DataStoreManager
-import com.example.restapp.data.manager_contracts.DataStoreManager.Companion.LOGIN_PREF_KEY
-import com.example.restapp.data.manager_contracts.DataStoreManager.Companion.PASSWORD_PREF_KEY
 import com.example.restapp.data.manager_contracts.DataStoreManager.Companion.TOKEN_PREF_KEY
 import com.example.restapp.ui.dataStore
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -20,8 +18,6 @@ class DataStoreManagerImpl @Inject constructor(
     private val store = context.dataStore
 
     private val dataStoreTokenKey = stringPreferencesKey(TOKEN_PREF_KEY)
-    private val dataStoreLoginKey = stringPreferencesKey(LOGIN_PREF_KEY)
-    private val dataStorePasswordKey = stringPreferencesKey(PASSWORD_PREF_KEY)
 
     override suspend fun addProfileToken(token: String) {
         store.edit {
